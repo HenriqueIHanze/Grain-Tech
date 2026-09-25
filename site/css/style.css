@@ -1,0 +1,22 @@
+body {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.principal {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bem-vindo {
+    color: white;
+}
+
+.cadastro {
+    height: 90%;
+    width: 40%;
+    background-color: white;
+    border-radius: 15px;
+
+}
