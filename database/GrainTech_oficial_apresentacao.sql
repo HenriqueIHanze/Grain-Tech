@@ -30,13 +30,11 @@ CREATE TABLE usuarios (
     documento_cpf VARCHAR(3) NOT NULL,
     cpf VARCHAR (11) NOT NULL,
     senha_hash VARCHAR(255) NOT NULL,
-    cargo VARCHAR(20) NOT NULL DEFAULT 'Operador',
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY uk_email (email),
     UNIQUE KEY uk_cpf (cpf),
     fk_empresas INT NOT NULL,
-    CONSTRAINT chk_cargo CHECK (cargo IN ('Admin', 'Gestor', 'Operador')),
 	  CONSTRAINT chk_documento_cpf CHECK (documento_cpf IN ('CPF')),
     CONSTRAINT chk_tamanho_cpf CHECK (
     (documento_cpf = 'CPF' AND CHAR_LENGTH(cpf) <= 11)),
@@ -238,13 +236,13 @@ INSERT INTO empresas (id_empresa, razao_social, documento_cnpj, cnpj, inscricao_
 -- ===================================
 -- USUARIOS
 -- ===================================
-INSERT INTO usuarios (id_usuario, fk_empresas, nome, email, documento_cpf, cpf, senha_hash, cargo) VALUES
-(1, 1, 'João Pereira', 'joao.pereira@email.com', 'CPF', '67891012131', 'hash_temp_1', 'Admin'),
-(2, 2, 'Ana Souza', 'ana.souza@cerradoagro.com.br', 'CPF', '56789101213', 'hash_temp_2', 'Admin'),
-(3, 2, 'Pedro Lima', 'pedro.lima@cerradoagro.com.br', 'CPF', '45678910123', 'hash_temp_3', 'Operador'),
-(4, 3, 'Carlos Menezes', 'carlos.menezes@valeverde.com.br', 'CPF', '34567891012', 'hash_temp_4', 'Gestor'),
-(5, 4, 'Marcos Silva', 'marcos.silva@email.com', 'CPF', '23456789101', 'hash_temp_5', 'Operador'),
-(6, 5, 'Fernanda Lima', 'fernanda.lima@coamo.com.br', 'CPF', '12345678910', 'hash_temp_6', 'Admin');
+INSERT INTO usuarios (id_usuario, fk_empresas, nome, email, documento_cpf, cpf, senha_hash) VALUES
+(1, 1, 'João Pereira', 'joao.pereira@email.com', 'CPF', '67891012131', 'hash_temp_1'),
+(2, 2, 'Ana Souza', 'ana.souza@cerradoagro.com.br', 'CPF', '56789101213', 'hash_temp_2'),
+(3, 2, 'Pedro Lima', 'pedro.lima@cerradoagro.com.br', 'CPF', '45678910123', 'hash_temp_3'),
+(4, 3, 'Carlos Menezes', 'carlos.menezes@valeverde.com.br', 'CPF', '34567891012', 'hash_temp_4'),
+(5, 4, 'Marcos Silva', 'marcos.silva@email.com', 'CPF', '23456789101', 'hash_temp_5'),
+(6, 5, 'Fernanda Lima', 'fernanda.lima@coamo.com.br', 'CPF', '12345678910', 'hash_temp_6');
 
 -- ===================================
 -- PROPRIEDADES
@@ -330,9 +328,8 @@ WHERE documento_cnpj = 'CNPJ'
 ORDER BY razao_social ASC;
 
 -- 2) Usuários com cargo Admin, nome e cargo concatenados
-SELECT CONCAT(nome, ' (', cargo, ')') AS usuario_admin
-FROM usuarios
-WHERE cargo = 'Admin'
+SELECT u.nome, u.cpf, u.fk_empresas, e.razao_social
+FROM usuarios AS u JOIN empresas AS e ON u.fk_empresas = e.id_empresa
 ORDER BY nome ASC;
 
 -- 3) Propriedades com mais de 1 silo, tratando conectividade ausente com IFNULL
