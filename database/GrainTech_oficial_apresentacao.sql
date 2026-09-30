@@ -1,0 +1,397 @@
+CREATE DATABASE GrainTech;
+
+USE GrainTech;
+-- ===================================
+-- EMPRESAS
+-- ===================================
+CREATE TABLE empresas (
+    id_empresa INT AUTO_INCREMENT PRIMARY KEY,
+    razao_social VARCHAR(150) NOT NULL,
+    documento_cnpj VARCHAR(4) NOT NULL,
+    cnpj VARCHAR(14) NOT NULL,
+    inscricao_estadual_produtor VARCHAR(20),
+    telefone VARCHAR(20),
+    email_contato VARCHAR(100) NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uk_cnpj (cnpj),
+    CONSTRAINT chk_documento_cnpj CHECK (documento_cnpj IN ('CNPJ')),
+    CONSTRAINT chk_tamanho_cnpj CHECK (
+    (documento_cnpj = 'CNPJ' AND CHAR_LENGTH(cnpj) <= 14))
+);
+
+-- ===================================
+-- USUARIOS
+-- ===================================
+CREATE TABLE usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    documento_cpf VARCHAR(3) NOT NULL,
+    cpf VARCHAR (11) NOT NULL,
+    senha_hash VARCHAR(255) NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uk_email (email),
+    UNIQUE KEY uk_cpf (cpf),
+    fk_empresas INT NOT NULL,
+	  CONSTRAINT chk_documento_cpf CHECK (documento_cpf IN ('CPF')),
+    CONSTRAINT chk_tamanho_cpf CHECK (
+    (documento_cpf = 'CPF' AND CHAR_LENGTH(cpf) <= 11)),
+	CONSTRAINT cfk_usuarios_empresa FOREIGN KEY (fk_empresas) REFERENCES empresas (id_empresa)
+);
+
+-- ===================================
+-- PROPRIEDADES
+-- ===================================
+CREATE TABLE propriedades (
+    id_propriedade INT AUTO_INCREMENT PRIMARY KEY,
+    nome_propriedade VARCHAR(100) NOT NULL,
+    endereco VARCHAR(200),
+    cidade VARCHAR(100),
+    uf CHAR(2),
+    qtd_silo INT NOT NULL DEFAULT 0,
+    tipo_conectividade VARCHAR(10) DEFAULT '4G',
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+     fk_empresas INT NOT NULL,
+    CONSTRAINT chk_tipo_conectividade CHECK (tipo_conectividade IN ('4G', 'LoRaWAN', 'Satelite')),
+	CONSTRAINT cfk_propriedade_empresa FOREIGN KEY (fk_empresas) REFERENCES empresas (id_empresa)
+);
+
+-- ===================================
+-- GRAOS
+-- ===================================
+CREATE TABLE graos (
+    id_grao INT AUTO_INCREMENT PRIMARY KEY,
+    nome_grao VARCHAR(50) NOT NULL,
+    densidade_kg_m3 DECIMAL(6,2) NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uk_nome_grao (nome_grao)
+);
+
+-- ===================================
+-- COTACOES_MERCADO (corrigida — parâmetros de cálculo, não vendas)
+-- ===================================
+CREATE TABLE cotacoes_mercado (
+    id_cotacao INT AUTO_INCREMENT PRIMARY KEY,
+    preco_saca DECIMAL(8,2) NOT NULL,
+    icms_percentual DECIMAL(5,2) NOT NULL DEFAULT 0,
+    funrural_percentual DECIMAL(5,2) NOT NULL DEFAULT 0,
+    data_cotacao DATE NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uk_grao_data (fk_graos, data_cotacao),
+    fk_graos INT NOT NULL,
+	CONSTRAINT cfk_cotacoes_graos FOREIGN KEY (fk_graos) REFERENCES graos (id_grao)
+);
+
+-- ===================================
+-- SILOS
+-- Inclui altura_cone_m (Pedro) para suportar silos de fundo cônico,
+-- previsto no Documento de TI. status ganha 'Manutencao' (Gabriel).
+-- ===================================
+CREATE TABLE silo (
+    id_silo INT AUTO_INCREMENT PRIMARY KEY,
+    nome_silo VARCHAR(100) NOT NULL,
+    altura_m DECIMAL(5,2) NOT NULL,
+    diametro_m DECIMAL(5,2) NOT NULL,
+    altura_cone_m DECIMAL(5,2) NOT NULL DEFAULT 0,
+    capacidade_max_ton DECIMAL(10,2) NOT NULL,
+    status VARCHAR(15) DEFAULT 'Ativo',
+    data_instalacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+	fk_graos INT NOT NULL,
+	fk_propriedades INT NOT NULL,
+    CONSTRAINT chk_status_silo CHECK (status IN ('Ativo', 'Inativo', 'Manutencao')),
+	CONSTRAINT cfk_silos_Graos FOREIGN KEY (fk_graos) REFERENCES graos (id_grao),
+	CONSTRAINT cfk_silos_propriedades FOREIGN KEY (fk_propriedades) REFERENCES propriedades (id_propriedade)
+);
+
+-- ===================================
+-- LEITURAS_SENSOR
+-- Inclui nivel_ocupacao (Victor/Rodrigo): valor por leitura, não
+-- fixo no silo — evita o problema de campo desatualizado.
+-- ===================================
+CREATE TABLE leituras_sensor (
+    id_leitura INT AUTO_INCREMENT PRIMARY KEY,
+    distancia_lida_m DECIMAL(5,2) NOT NULL,
+    volume_calculado_m3 DECIMAL(10,2),
+    nivel_ocupacao VARCHAR(15),
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fk_silos INT NOT NULL,
+    CONSTRAINT chk_nivel_ocupacao CHECK (nivel_ocupacao IN ('Baixo', 'Medio', 'Alto', 'Ultrapassado')),
+	CONSTRAINT cfk_leituras_silos FOREIGN KEY (fk_silos) REFERENCES silo (id_silo)
+);
+
+-- ===================================
+-- OPERACOES
+-- ===================================
+CREATE TABLE operacoes (
+    id_operacao INT AUTO_INCREMENT PRIMARY KEY,
+    tipo_operacao VARCHAR(10) NOT NULL,
+    quantidade_ton DECIMAL(10,2) NOT NULL,
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fk_silos INT NOT NULL,
+    CONSTRAINT chk_tipo_operacao CHECK (tipo_operacao IN ('Entrada', 'Saida')),
+	CONSTRAINT cfk_operacoes_Silos FOREIGN KEY (fk_silos) REFERENCES silo (id_silo)
+);
+
+-- ===================================
+-- PLANOS
+-- Valores atualizados conforme a nova decisão de negócio
+-- (taxa de setup parcial + mensalidade cobrindo hardware e software).
+-- ===================================
+CREATE TABLE planos (
+    id_plano INT AUTO_INCREMENT PRIMARY KEY,
+    nome_plano VARCHAR(20) NOT NULL,
+    faixa_min_silos INT NOT NULL,
+    faixa_max_silos INT,
+    taxa_setup DECIMAL(8,2) NOT NULL,
+    mensalidade_silo DECIMAL(8,2) NOT NULL,
+    prazo_minimo_meses INT NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_nome_plano CHECK (nome_plano IN ('Individual', 'Operacao', 'Enterprise'))
+);
+
+-- ===================================
+-- CONTRATOS
+-- Inclui forma_pagamento e dia_vencimento (João Vitor), cobrindo
+-- a cobrança recorrente do plano contratado.
+-- ===================================
+CREATE TABLE contratos (
+    id_contrato INT AUTO_INCREMENT PRIMARY KEY,
+    data_inicio DATE NOT NULL,
+    data_fim_fidelidade DATE NOT NULL,
+    forma_pagamento VARCHAR(15) NOT NULL DEFAULT 'Boleto',
+    dia_vencimento CHAR(2) NOT NULL DEFAULT '10',
+    status VARCHAR(10) DEFAULT 'Ativo',
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fk_empresas INT NOT NULL,
+    fk_planos INT NOT NULL,
+    CONSTRAINT chk_status_contrato CHECK (status IN ('Ativo', 'Cancelado', 'Suspenso')),
+    CONSTRAINT chk_forma_pagamento CHECK (forma_pagamento IN ('Boleto', 'PIX', 'Cartao')),
+    CONSTRAINT chk_dia_vencimento CHECK (dia_vencimento IN ('01','05','08','10','15','20','25','30')),
+	CONSTRAINT cfk_contratos_empresa FOREIGN KEY (fk_empresas) REFERENCES empresas (id_empresa),
+	CONSTRAINT cfk_contratos_planos FOREIGN KEY (fk_planos) REFERENCES planos (id_plano)
+);
+
+-- ===================================
+-- GANHO_FINANCEIRO
+-- ===================================
+CREATE TABLE ganho_financeiro (
+    id_ganho INT AUTO_INCREMENT PRIMARY KEY,
+    sacas_armazenadas INT NOT NULL,
+    desagio_por_saca DECIMAL(5,2) NOT NULL,
+    perda_evitada_reais DECIMAL(12,2) NOT NULL,
+    data_simulacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fk_silos INT NOT NULL,
+	CONSTRAINT cfk__financeiro_silos FOREIGN KEY (fk_silos) REFERENCES silo (id_silo)
+);
+
+-- Inserçoes
+
+-- ===================================
+-- GRAOS
+-- ===================================
+INSERT INTO graos (id_grao, nome_grao, densidade_kg_m3) VALUES
+(1, 'Soja', 750.00),
+(2, 'Milho', 720.00),
+(3, 'Arroz', 580.00),
+(4, 'Trigo', 770.00);
+
+-- ===================================
+-- COTACOES_MERCADO
+-- ===================================
+INSERT INTO cotacoes_mercado (id_cotacao, fk_graos, preco_saca, icms_percentual, funrural_percentual, data_cotacao) VALUES
+(1, 1, 120.50, 7.00, 1.20, '2026-09-01'),
+(2, 1, 121.30, 7.00, 1.20, '2026-09-05'),
+(3, 2, 60.00, 7.00, 1.20, '2026-09-01'),
+(4, 2, 59.20, 7.00, 1.20, '2026-09-05'),
+(5, 3, 105.00, 7.00, 1.20, '2026-09-01'),
+(6, 4, 98.00, 7.00, 1.20, '2026-09-01');
+
+-- ===================================
+-- PLANOS
+-- ===================================
+INSERT INTO planos (id_plano, nome_plano, faixa_min_silos, faixa_max_silos, taxa_setup, mensalidade_silo, prazo_minimo_meses) VALUES
+(1, 'Individual', 1, 9, 1800.00, 350.00, 12),
+(2, 'Operacao', 10, 49, 1300.00, 280.00, 24),
+(3, 'Enterprise', 50, NULL, 0.00, 200.00, 36);
+
+-- ===================================
+-- EMPRESAS
+-- ===================================
+INSERT INTO empresas (id_empresa, razao_social, documento_cnpj, cnpj, inscricao_estadual_produtor, telefone, email_contato) VALUES
+(1, 'João Pereira Produtor Rural', 'CNPJ', '12345678901122', '123.4567', '(65) 99111-0001', 'joao.pereira@email.com'),
+(2, 'Fazendas Reunidas do Cerrado Ltda', 'CNPJ', '12345678000101', NULL, '(65) 3333-1000', 'contato@cerradoagro.com.br'),
+(3, 'Agropecuária Vale Verde S.A.', 'CNPJ', '23456789000102', NULL, '(51) 3333-2000', 'contato@valeverde.com.br'),
+(4, 'Marcos Silva Produtor Rural', 'CNPJ', '23456789012131', '234.5678', '(46) 99111-0002', 'marcos.silva@email.com'),
+(5, 'Coamo Agroindustrial Cooperativa', 'CNPJ', '34567890000103', NULL, '(44) 3333-3000', 'ti@coamo.com.br');
+
+-- ===================================
+-- USUARIOS
+-- ===================================
+INSERT INTO usuarios (id_usuario, fk_empresas, nome, email, documento_cpf, cpf, senha_hash) VALUES
+(1, 1, 'João Pereira', 'joao.pereira@email.com', 'CPF', '67891012131', 'hash_temp_1'),
+(2, 2, 'Ana Souza', 'ana.souza@cerradoagro.com.br', 'CPF', '56789101213', 'hash_temp_2'),
+(3, 2, 'Pedro Lima', 'pedro.lima@cerradoagro.com.br', 'CPF', '45678910123', 'hash_temp_3'),
+(4, 3, 'Carlos Menezes', 'carlos.menezes@valeverde.com.br', 'CPF', '34567891012', 'hash_temp_4'),
+(5, 4, 'Marcos Silva', 'marcos.silva@email.com', 'CPF', '23456789101', 'hash_temp_5'),
+(6, 5, 'Fernanda Lima', 'fernanda.lima@coamo.com.br', 'CPF', '12345678910', 'hash_temp_6');
+
+-- ===================================
+-- PROPRIEDADES
+-- ===================================
+INSERT INTO propriedades (id_propriedade, fk_empresas, nome_propriedade, endereco, cidade, uf, qtd_silo, tipo_conectividade) VALUES
+(1, 1, 'Fazenda São João', 'Rodovia MT-020, km 45', 'Sorriso', 'MT', 2, 'LoRaWAN'),
+(2, 2, 'UA Cerrado Norte', 'Rodovia BR-163, km 780', 'Sorriso', 'MT', 3, 'LoRaWAN'),
+(3, 3, 'UA Vale Verde I', 'Rodovia RS-135, km 22', 'Passo Fundo', 'RS', 2, '4G'),
+(4, 4, 'Fazenda Santa Marta', 'Rodovia PR-180, km 12', 'Campo Mourão', 'PR', 1, '4G'),
+(5, 5, 'UA Coamo Campo Mourão', 'Av. Presidente Kennedy, 1200', 'Campo Mourão', 'PR', 2, '4G');
+
+-- ===================================
+-- SILOS
+-- ===================================
+INSERT INTO silo (id_silo, fk_propriedades, fk_graos, nome_silo, altura_m, diametro_m, altura_cone_m, capacidade_max_ton, status) VALUES
+(1, 1, 1, 'Silo 01', 10.00, 6.00, 0.00, 300.00, 'Ativo'),
+(2, 1, 2, 'Silo 02', 12.00, 7.00, 1.50, 400.00, 'Ativo'),
+(3, 2, 1, 'Silo 01', 11.00, 6.50, 0.00, 350.00, 'Ativo'),
+(4, 2, 2, 'Silo 02', 12.00, 7.00, 0.00, 400.00, 'Manutencao'),
+(5, 2, 4, 'Silo 03', 13.00, 7.50, 2.00, 480.00, 'Ativo'),
+(6, 3, 1, 'Silo 01', 10.00, 6.00, 0.00, 300.00, 'Ativo'),
+(7, 3, 3, 'Silo 02', 9.00, 5.50, 0.00, 250.00, 'Inativo'),
+(8, 4, 2, 'Silo 01', 12.00, 7.00, 0.00, 400.00, 'Ativo'),
+(9, 5, 1, 'Silo 01', 14.00, 8.00, 2.50, 550.00, 'Ativo'),
+(10, 5, 3, 'Silo 02', 10.00, 6.00, 0.00, 300.00, 'Ativo');
+
+-- ===================================
+-- LEITURAS_SENSOR
+-- ===================================
+INSERT INTO leituras_sensor (id_leitura, fk_silos, distancia_lida_m, volume_calculado_m3, nivel_ocupacao, data_hora) VALUES
+(1, 1, 3.20, 197.90, 'Alto', '2026-09-01 08:00:00'),
+(2, 1, 3.10, 200.75, 'Alto', '2026-09-02 08:00:00'),
+(3, 2, 4.00, 320.10, 'Medio', '2026-09-01 08:00:00'),
+(4, 3, 2.80, 260.40, 'Alto', '2026-09-01 08:00:00'),
+(5, 5, 3.50, 290.00, 'Medio', '2026-09-02 08:00:00'),
+(6, 6, 5.00, 150.30, 'Baixo', '2026-09-01 08:00:00'),
+(7, 8, 1.20, 380.60, 'Ultrapassado', '2026-09-02 08:00:00'),
+(8, 9, 2.00, 480.90, 'Alto', '2026-09-01 08:00:00'),
+(9, 9, 1.80, 500.10, 'Ultrapassado', '2026-09-03 08:00:00'),
+(10, 10, 6.50, 90.20, 'Baixo', '2026-09-02 08:00:00');
+
+-- ===================================
+-- OPERACOES
+-- ===================================
+INSERT INTO operacoes (id_operacao, fk_silos, tipo_operacao, quantidade_ton, data_hora) VALUES
+(1, 1, 'Entrada', 50.00, '2026-09-01 09:00:00'),
+(2, 1, 'Saida', 10.00, '2026-09-03 14:00:00'),
+(3, 2, 'Entrada', 80.00, '2026-09-01 09:30:00'),
+(4, 3, 'Entrada', 60.00, '2026-09-01 10:00:00'),
+(5, 5, 'Saida', 20.00, '2026-09-02 11:00:00'),
+(6, 6, 'Entrada', 40.00, '2026-09-01 09:15:00'),
+(7, 8, 'Entrada', 90.00, '2026-09-02 09:45:00'),
+(8, 9, 'Entrada', 120.00, '2026-09-01 08:30:00'),
+(9, 9, 'Entrada', 35.00, '2026-09-03 07:00:00'),
+(10, 10, 'Saida', 15.00, '2026-09-02 13:00:00');
+
+-- ===================================
+-- CONTRATOS
+-- ===================================
+INSERT INTO contratos (id_contrato, fk_empresas, fk_planos, data_inicio, data_fim_fidelidade, forma_pagamento, dia_vencimento, status) VALUES
+(1, 1, 1, '2026-01-15', '2027-01-15', 'PIX', '10', 'Ativo'),
+(2, 2, 2, '2026-01-10', '2028-01-10', 'Boleto', '05', 'Ativo'),
+(3, 3, 1, '2026-03-05', '2027-03-05', 'Cartao', '15', 'Ativo'),
+(4, 4, 1, '2026-02-01', '2027-02-01', 'Boleto', '20', 'Cancelado'),
+(5, 5, 3, '2026-01-20', '2029-01-20', 'PIX', '01', 'Ativo');
+
+-- ===================================
+-- GANHO_FINANCEIRO
+-- ===================================
+INSERT INTO ganho_financeiro (id_ganho, fk_silos, sacas_armazenadas, desagio_por_saca, perda_evitada_reais, data_simulacao) VALUES
+(1, 1, 3000, 20.00, 60000.00, '2026-09-02 10:00:00'),
+(2, 3, 4200, 18.50, 77700.00, '2026-09-02 10:15:00'),
+(3, 6, 2500, 22.00, 55000.00, '2026-09-03 09:00:00'),
+(4, 9, 5500, 25.00, 137500.00, '2026-09-03 09:30:00'),
+(5, 10, 1800, 15.50, 27900.00, '2026-09-02 14:00:00');
+
+-- Consultas
+
+-- 1) Empresas CNPJ, ordenadas por nome
+SELECT razao_social, cnpj, email_contato
+FROM empresas
+WHERE documento_cnpj = 'CNPJ'
+ORDER BY razao_social ASC;
+
+-- 2) Usuários com cargo Admin, nome e cargo concatenados
+SELECT u.nome, u.cpf, u.fk_empresas, e.razao_social
+FROM usuarios AS u JOIN empresas AS e ON u.fk_empresas = e.id_empresa
+ORDER BY nome ASC;
+
+-- 3) Propriedades com mais de 1 silo, tratando conectividade ausente com IFNULL
+SELECT nome_propriedade, cidade, uf, qtd_silo, IFNULL(tipo_conectividade, 'Não informado') AS conectividade
+FROM propriedades
+WHERE qtd_silo > 1
+ORDER BY qtd_silo DESC;
+
+-- 4) Silos por status, mostrando os que não estão ativos
+SELECT nome_silo, status, capacidade_max_ton
+FROM silo
+WHERE status != 'Ativo'
+ORDER BY status ASC;
+
+-- 5) Silos com fundo cônico (altura_cone_m > 0)
+SELECT nome_silo, altura_m, altura_cone_m, capacidade_max_ton
+FROM silo
+WHERE altura_cone_m > 0
+ORDER BY altura_cone_m DESC;
+
+-- 6) Leituras classificadas como críticas (Alto ou Ultrapassado)
+SELECT fk_silos, nivel_ocupacao, distancia_lida_m, data_hora
+FROM leituras_sensor
+WHERE nivel_ocupacao IN ('Alto', 'Ultrapassado')
+ORDER BY data_hora DESC;
+
+-- 7) Operações de entrada acima de 45 toneladas, em setembro
+SELECT fk_silos, quantidade_ton, data_hora
+FROM operacoes
+WHERE tipo_operacao = 'Entrada'
+  AND quantidade_ton > 45.00
+  AND data_hora BETWEEN '2026-09-01' AND '2026-09-30'
+ORDER BY quantidade_ton DESC;
+
+-- 8) Cotações do grão de código 1
+SELECT data_cotacao, preco_saca
+FROM cotacoes_mercado
+WHERE fk_graos = 1
+ORDER BY data_cotacao ASC;
+
+-- 9) Contratos ativos com pagamento por PIX
+SELECT fk_empresas, forma_pagamento, dia_vencimento, status
+FROM contratos
+WHERE status = 'Ativo' AND forma_pagamento = 'PIX'
+ORDER BY dia_vencimento ASC;
+
+-- 10) Planos, tratando faixa_max_silos NULL (Enterprise)
+SELECT nome_plano,
+       CONCAT(faixa_min_silos, ' a ', IFNULL(faixa_max_silos, 'sem limite')) AS faixa_silos,
+       mensalidade_silo,
+       prazo_minimo_meses
+FROM planos
+ORDER BY faixa_min_silos ASC;
+
+-- 11) Simulações de ganho financeiro acima de R$60.000
+SELECT CONCAT('Silo ', fk_silos, ': R$ ', perda_evitada_reais, ' evitados') AS resumo
+FROM ganho_financeiro
+WHERE perda_evitada_reais > 60000.00
+ORDER BY perda_evitada_reais DESC;
+
+-- 12) Propriedades cujo nome contém "Fazenda"
+SELECT nome_propriedade, cidade, uf
+FROM propriedades
+WHERE nome_propriedade LIKE 'Fazenda%'
+ORDER BY nome_propriedade ASC;
