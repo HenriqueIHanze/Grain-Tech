@@ -4,7 +4,7 @@ body{ font-family:Arial, Helvetica, sans-serif; color:#2b2f2a; background:#f6f1e
 
 /* Barra de navegação */
 .navbar{ background:#fff; display:flex; align-items:center; justify-content:space-between; padding:18px 40px; border-bottom:1px solid #e4ddc9; }
-.logo-nav{ font-weight:700; font-size:18px; }
+.logo-nav{ height:32px; width:auto; }
 .links-nav{ list-style:none; display:flex; gap:32px; }
 .links-nav a{ text-decoration:none; color:#2b2f2a; font-size:14px; }
 .links-nav a.ativo{ color:#e0693e; border-bottom:2px solid #e0693e; padding-bottom:4px; }
