@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+
+    <div class="principal">
+
+        <div class="bem-vindo">
+            <h1>Bem-vindo à</h1>
+            <img class="imagem1" src="../img/graintech.png">
+            <h1>Gestão inteligente para o <br>
+                armazenamento de grãos</h1>
+        </div>
+        <div class="cadastro">
+            <div class="centro">
+                <img class="imagem2" src="../img/Container.png">
+                <div class="trocar_cadastro">
+                    <div class="trocar_cadastro">
+                        <div class="nao_selecionado">Login</div>
+                        <div class="selecionado">Cadastro</div>
+                    </div>
+                </div>
+                <p>O controle total da sua armazenagem começa aqui.<br>
+                    Crie sua conta e evite desperdícios na sua safra.</p>
+                <div class="linha"></div>
+                <div class="dois_campos">
+                    <div class="campo">
+                        <input id="ipt_cep" type="text" placeholder="CEP" />
+                    </div>
+                    <div class="campo">
+                        <input id="ipt_cidade" type="text" placeholder="Cidade" />
+                    </div>
+                </div>
+                <div class="tres_campos">
+                    <div class="campo">
+                        <input id="ipt_rua" type="text" placeholder="Rua" />
+                    </div>
+                    <div class="campo">
+                        <input id="ipt_bairro" type="text" placeholder="Bairro" />
+                    </div>
+                    <div class="campo">
+                        <input id="ipt_uf" type="text" placeholder="UF" />
+                    </div>
+                </div>
+                <div class="campo">
+                    <input id="ipt_qtd_silos" type="text" placeholder="Quantidade de Silos" />
+                </div>
+                <div class="campo">
+                    <select name="tipo_de_grao" id="grao">
+                        <option disabled selected>Quais são os grãos que você produz</option>
+                        <option value="1">Soja</option>
+                        <option value="2">Milho</option>
+                        <option value="3">Arroz</option>
+                        <option value="4">Trigo</option>
+                    </select>
+                </div>
+                <button class="confirmar">
+                    Criar Conta
+                </button>
+                <div class="troca">
+                    <button onclick="window.location.href='cadastro.html'"><-</button>
+                        <p>2 / 2</p>
+                    <button>-></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
