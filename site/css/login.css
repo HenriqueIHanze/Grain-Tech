@@ -92,7 +92,11 @@ body {
   font-size: 16px;
   color: #333;
   cursor: pointer;
+}
 
+.aba:hover{
+  background-color: #253D2D;
+  color: #fff;
 }
 
 .link-limpo{
