@@ -264,3 +264,15 @@ p {
     border-radius: 50px;
     color: #253D2D;
 }
+
+.nao_selecionado a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/*Adicionando Hover na tela de cadastro */
+
+.nao_selecionado:hover{  
+    background-color: #253D2D;
+    color:white;
+}
