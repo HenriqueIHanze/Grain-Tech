@@ -10,8 +10,9 @@ A COR DO FUNDO FICARIA DA MESMA DOS CONTAINER E CABEÇALHO, AS MARGENS E ESPAÇA
 
 /* ALTERA A PROPRIEDADE DAS CORES APENAS DO CORPO DO SITE PARA OS CARDS SE DESTACAREM */
 body {
-    background-color: #f8f9fa;
-    color: #333333;
+    color:#2b2f2a; 
+    background:#f6f1e6; 
+    
 }
 
 /* --- FIM DAS CONFIGURAÇÕES GERAIS --- */
