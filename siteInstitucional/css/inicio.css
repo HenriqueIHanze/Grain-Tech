@@ -1,0 +1,485 @@
+
+/* 1. VARIÁVEIS */
+:root {
+  --verde-900: #1e3a2c;   /* títulos e textos escuros */
+  --verde-800: #254032;   /* card de chamada e rodapé */
+  --verde-700: #1f3b2e;   /* mini cards da seção de controle */
+  --verde-ciclo: #223a2d; /* faixa do ciclo contínuo */
+  --verde-tile: #0f2b25;  /* quadradinho dos ícones */
+  --salmao: #f0a08a;
+  --salmao-escuro: #e88d73;
+  --texto: #2a2f2c;
+  --borda: #e4e8e5;
+  --fonte-titulo: "Poppins", sans-serif;
+  --fonte-texto: "Inter", sans-serif;
+}
+
+/* 2. RESET E BASE ---------------------------------------------
+   Cada navegador tem margens padrão diferentes. O box-sizing: border-box faz
+   padding e borda ficarem DENTRO da largura definida. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  color: var(--texto);
+  background: #fff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  color: var(--verde-900);
+}
+
+h2 {
+  font-size: 2.25rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* 3. BOTÕES (classe reutilizável)*/
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 2rem;
+  border-radius: 0.4rem;
+  background: var(--salmao);
+  color: var(--verde-900);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: background 0.2s;
+}
+.botao:hover { background: var(--salmao-escuro); }
+.botao img { width: 0.9rem; height: 0.9rem; }
+
+.botao-grande { padding: 1rem 2.8rem; }
+
+.botao-escuro { background: rgba(37, 64, 50, 0.88); color: #fff; }
+.botao-escuro:hover { background: var(--verde-800); }
+
+/* 4. CABEÇALHO */
+header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: #fff;
+}
+
+.logo { width: 8.5rem; height: auto; }
+
+header nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+header nav ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+header nav a { font-size: 0.875rem; font-weight: 500; color: #1c2b24; }
+header nav a:hover { color: var(--salmao-escuro); }
+
+.cabecalho { margin: 0 auto; }
+
+/* 5. HERO */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 43rem;
+  padding: 4rem 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.imgBckgInicio {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 35, 27, 0.55) 0%,
+    rgba(20, 40, 30, 0.78) 55%,
+    rgba(18, 44, 32, 0.97) 100%
+  );
+}
+
+.hero h1 {
+  max-width: 53rem;
+  margin-bottom: 1.7rem;
+  font-size: 3.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.hero p {
+  max-width: 46rem;
+  margin-bottom: 3.4rem;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+#conexao {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ant_problem,
+.ciclo,
+.controle {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+/* 6. ANTECIPE PROBLEMAS  */
+.ant_problem {
+  display: grid;
+  grid-template-columns: 26rem repeat(3, 1fr);
+  grid-template-rows: auto auto auto 1fr;
+  column-gap: 1.4rem;
+  padding: 6.5rem 5rem 5rem;
+}
+
+.ant_problem > img {
+  grid-row: 1 / -1;
+  width: 25rem;
+  height: 35rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.18);
+}
+
+.ant_problem > h2,
+.ant_problem > p { grid-column: 2 / -1; }
+
+.ant_problem > h2 { margin: 3rem 0 1.5rem; }
+
+.ant_problem > p {
+  max-width: 49rem;
+  margin-bottom: 3.5rem;
+  line-height: 1.75;
+}
+
+.ant_problem article {
+  padding: 1.7rem 1.1rem;
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 0.65rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.ant_problem article h3 {
+  margin-bottom: 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.ant_problem article p {
+  font-size: 0.85rem;
+  line-height: 1.75;
+}
+
+/* 7. CICLO CONTÍNUO */
+.ciclo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 5rem 7.5rem;
+}
+
+.ciclo > h2 { margin-bottom: 3.5rem; text-align: center; }
+
+.ciclo ol {
+  --espaco: clamp(2rem, 10.5vw, 9.5rem);
+  display: flex;
+  justify-content: center;
+  gap: var(--espaco);
+  width: 100%;
+  padding: 2.4rem 2.6rem;
+  background: var(--verde-ciclo);
+  border-radius: 1rem;
+}
+
+.ciclo li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ciclo li img {
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-bottom: 1rem;
+  padding: 1.2rem;
+  background: var(--verde-tile);
+  border-radius: 0.75rem;
+}
+
+.ciclo li h3 {
+  font-family: var(--fonte-texto);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.ciclo li p {
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.ciclo li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 2.25rem; 
+  left: calc(100% + 1.2rem);
+  width: calc(var(--espaco) - 2.4rem);
+  height: 0.5rem;
+  transform: translateY(-50%);
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0.17rem, transparent 0.2rem) center / 0.5rem 0.5rem no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.14)) center / 100% 1px no-repeat;
+}
+
+.ciclo li:not(:last-child)::after {
+  content: "\203A";
+  position: absolute;
+  top: 2.25rem;
+  left: calc(100% + var(--espaco) - 1.6rem);
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ciclo > .botao { margin-top: 3.4rem; }
+
+/* 8. CONTROLE CONTÍNUO */
+.controle {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.1rem 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1.1rem;
+  padding: 7.5rem 3.25rem 7rem;
+}
+
+.controle > h2 {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  max-width: 37.5rem;
+  margin-bottom: 1.7rem;
+  line-height: 1.5;
+}
+
+.controle > p {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  max-width: 36.8rem;
+  margin-bottom: 2.6rem;
+  font-size: 0.95rem;
+  line-height: 1.85;
+}
+
+.controle > article:nth-of-type(1) { grid-column: 1; grid-row: 3; }
+.controle > article:nth-of-type(2) { grid-column: 2; grid-row: 3; }
+
+.controle > div {
+  grid-column: 4 / 6;
+  grid-row: 1 / 4;
+}
+
+.controle > div img {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.18);
+}
+
+.controle article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 0.5rem;
+  row-gap: 0.55rem;
+  padding: 1.1rem;
+  background: var(--verde-700);
+  border-radius: 0.6rem;
+}
+
+.controle article img { width: 1.1rem; height: 1.1rem; }
+
+.controle article h3 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.controle article:first-of-type h3 { color: var(--salmao); }
+
+.controle article p {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* 9. CHAMADA FINAL (CTA)*/
+.transf_dados {
+  position: relative;
+  width: min(80rem, calc(100% - 10rem));
+  margin: 10.5rem auto 6.5rem;
+  padding: 3rem 5.2rem 2.8rem;
+  background: var(--verde-800);
+  border-radius: 1rem;
+  box-shadow: 0 1.2rem 2.5rem rgba(0, 0, 0, 0.18);
+}
+
+.transf_dados .chamada {
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--salmao);
+}
+
+.transf_dados h2 {
+  max-width: 38rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.transf_dados > p:not(.chamada) {
+  max-width: 33rem;
+  margin-bottom: 2.2rem;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.transf_dados > img {
+  position: absolute;
+  right: 4.3rem;
+  bottom: 0;
+  width: auto;
+  height: 32rem;
+  max-width: none;
+}
+
+/* 10. RODAPÉ  */
+footer {
+  padding: 4.5rem 3.25rem 5rem;
+  background: var(--verde-800);
+  color: #fff;
+}
+
+.grade-rodape {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3.4rem;
+  align-items: start;
+}
+
+/* A logo é a mesma imagem do cabeçalho, pintada de branco com filter */
+.logo-rodape {
+  width: 8.5rem;
+  margin-bottom: 1rem;
+  filter: brightness(0) invert(1);
+}
+
+footer p,
+footer li { font-size: 0.8125rem; line-height: 1.5; color: rgba(255, 255, 255, 0.75); }
+
+.grade-rodape > div:first-child p { max-width: 17.5rem; line-height: 1.7; }
+
+footer h4 {
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+footer li + li { margin-top: 0.5rem; }
+footer a:hover { color: var(--salmao); }
+
+.rodape-inferior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5.5rem;
+}
+
+/* 11. RESPONSIVO (extra) */
+@media (max-width: 1024px) {
+  header { flex-wrap: wrap; gap: 1rem; padding: 1rem 1.5rem; }
+  header nav { flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+  .cabecalho { margin: 0; flex-wrap: wrap; gap: 1rem 1.5rem; }
+
+  .hero { min-height: 34rem; }
+  .hero h1 { font-size: 2.5rem; }
+
+  .ant_problem,
+  .controle { display: flex; flex-direction: column; gap: 1.5rem; padding: 4rem 1.5rem; }
+  .ant_problem > img { width: 100%; height: 22rem; }
+  .ant_problem > h2 { margin: 1rem 0 0; }
+  .ant_problem > p { margin-bottom: 1rem; }
+
+  .ciclo { padding: 4rem 1.5rem 5rem; }
+  .ciclo ol { flex-wrap: wrap; gap: 2rem; padding: 2rem 1.5rem; }
+  .ciclo li::before,
+  .ciclo li::after { display: none; }
+
+  .transf_dados { width: calc(100% - 3rem); margin: 4rem auto; padding: 2.5rem 1.5rem 0; }
+  .transf_dados > img { position: static; height: auto; width: 70%; margin: 1.5rem auto 0; }
+
+  .grade-rodape { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+
+@media (max-width: 600px) {
+  .grade-rodape { grid-template-columns: 1fr; }
+  .rodape-inferior { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
