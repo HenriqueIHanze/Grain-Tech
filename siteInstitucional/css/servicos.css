@@ -1,0 +1,506 @@
+/* --- CONFIGURAÇÕES GERAIS DO BODY HTML --- */
+/*  (*) SERVE PARA APLICAR ISSO EM TODOS OS ELEMENTOS PRESENTE NO HTML */
+/*  SEM O ASTERISCO O BODY E AS PRIMEIRAS PROPRIEDADES NÃO SERIA APLICADOS EM TODO O HTML ENTÃO
+A COR DO FUNDO FICARIA DA MESMA DOS CONTAINER E CABEÇALHO, AS MARGENS E ESPAÇAMENTOS FICARIA DESREGULARIZADA FORA DE PADRÃO */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ALTERA A PROPRIEDADE DAS CORES APENAS DO CORPO DO SITE PARA OS CARDS SE DESTACAREM */
+body {
+    background-color: #f8f9fa;
+    color: #333333;
+}
+
+/* --- FIM DAS CONFIGURAÇÕES GERAIS --- */
+
+/* --- PARA TODAS AS SEÇÕES DE SERVÇOS --- */
+/* MUDA AS PROPRIEDADES DOS SUBTÍTULOS */
+.subtitulo {
+    font-size: 12px;
+    font-weight: bold;
+    color: #C0674F;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+}
+
+/* MUDA AS PROPRIEDADES DAS DESCRIÇÕES */
+.descricao {
+    font-size: 16px;
+    color: #555555;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+/* --- FIM DAS PROPRIEDADES DE DESCRÇÃO E SUBTÍTULOS --- */
+
+/* --- SEÇÃO DE SERVIÇOS 1 --- */
+/* AGRUPANDO TODA A PARTE DA 1 SEÇÃO */
+.servicos {
+    display: flex;
+    padding: 50px;
+
+}
+
+/* MUDA AS PROPRIEDADES DO TÍTULO H2*/
+.servicos h2 {
+    display: flex;
+    font-size: 36px;
+    color: #123332;
+    margin-bottom: 10px;
+
+}
+
+/* CONTAINERS AGRUPANDO CARDS ESPECÍFICOS NO SITE DE ACORDO COM O PROTÓTIPO */
+/*  AGRUPANDO O CARD TÍTULO, SUBTÍTULOS E DESCRIÇÃO  */
+.container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 40px;
+    justify-content: center;
+
+}
+
+/* AGRUPANDO OS CARDS 1 E 2 (OCUPAÇÃO DO SILO, ENTRADA E SAÍDA DOS GRÃOS) */
+.container2 {
+    display: flex;
+    gap: 20px;
+
+}
+
+/* AGRUPANDO OS CARDS 3 E 4 (HISTÓRICO DE ARMAZENAMENTO, VALOR DO ATIVO ARMAZENADO) */
+.container3 {
+    display: flex;
+    gap: 20px;
+
+}
+
+/* AGRUPANDO O CARD 5 (GANHO FINANCEIRO COMPARADO A VENDA FORÇADA) */
+.container4 {
+    display: flex;
+}
+
+/* --- FIM DA SEÇÃO SERVIÇOS 1 --- */
+
+
+/* --- CABEÇALHO E NAVBAR --- */
+/* AGRUPANDO O CARD CABEÇALHO (BOTÕES, LOGO E PÁGINAS) */
+.container5 {
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* AGRUPANDO TODA A PARTE DO CABEÇALHO DEFINE SUA POSIÇÃO E PROPRIEDADES*/
+/* Z-INDEX MANTÉM O CABEÇALHO ACIMA DOS OUTROS ELEMENTOS MESMO ARRASTANDO O MOUSE PARA BAIXO */
+/* POSITION FIXA O CABEÇALHO NO TOPO DO SITE */
+/* BORDER - BOTTOM É A BORDA DO CABEÇALHO QUE ESTÁ SOLID*/
+/* PADDING: PRIMEIRO VALOR (BASE, TOPO) SEGUNDO VALOR (LEFT, RIGHT) */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 2px solid #eaeaea;
+    padding: 20px 0;
+    position: sticky;
+    z-index: 100;
+}
+
+/* AGRUPANDO O GRUPO DE LINKS (PÁGINAS) DO SITE */
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+/* PROPRIEDADES DOS LINKS (PÁGINAS) DO SITE */
+.nav-links a {
+    text-decoration: none;
+    color: #666666;
+    font-weight: 600;
+
+}
+
+/* ANIMAÇÃO PROPRIEDADE QUE MUDA A COR NA HORA QUE PASSA O MOUSE NOS LINKS(PÁGINAS) */
+.nav-links a:hover {
+    color: #123332;
+}
+
+/* AGRUPANDO A PARTE DOS BOTÕES (LOGIN, CADASTRO)*/
+.nav-botoes {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+}
+
+/* PROPRIEDADE DO BOTÃO DE LOGIN */
+.btn-login {
+    text-decoration: none;
+    color: #1b4d3e;
+    font-weight: 600;
+}
+
+/* PROPRIEDADE DO BOTÃO DE CADASTRO */
+/* TRANSISITION OU TRANSIÇÃO QUE LEVA O BOTÃO CADASTRO MUDAR DE COR AO COLOCAR O MOUSE*/
+.btn-cadastro {
+    text-decoration: none;
+    background-color: #e06d4e;
+    color: #6D3220;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.4s;
+}
+
+/* ANIMAÇÃO QUE AO COLOCAR O MOUSE NO BOTÃO DE CADASTRO A PROPRIEDADE DA COR ALTERA FICANDO MAIS ESCURA */
+.btn-cadastro:hover {
+    background-color: #C0674F;
+
+}
+
+/* --- FIM DO CABEÇALHO E NAVBAR --- */
+
+/* --- FORMAÇÃO DOS CARDS E CLASSE PAI DE AGRUPAMENTO --- */
+/* CLASSE PAI AGRUPANDO TODOS OS CARDS, E CONTAINERS: (1,2,3,4) DA SEÇÃO SERVIÇOS 1 */
+.card_pai {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+
+}
+
+/* FORMANDO OS CARDS: BLOCOS PARA OS CONTAINERS */
+/* FLEX:1 OCUPA OS ESPAÇOS REGULARIZANDO O TAMANHO APROPRIADO DOS CARDS PARA QUE FIQUEM ALINHADOS */
+.card {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    flex: 1;
+    border: 2px solid #eeeeee;
+
+}
+
+/* PROPRIEDADE DOS TÍTULOS DOS CARDS*/
+.card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    color: #111111;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* PROPRIEDADE DOS CONTEÚDOS (DESCRIÇÃO) DOS CARDS PARA ALINHAR A ESQUERDA E ESPAÇAMENTO DE 1.5 */
+.card p {
+    text-align: left;
+    line-height: 1.5;
+}
+
+/* --- FIM: FORMAÇÃO DOS CARDS E CLASSE PAI DE AGRUPAMENTO --- */
+
+/* --- SEÇÃO DE SERVIÇOS 2 --- */
+/* AGRUPANDO TODA A PARTE SEÇÃO 2 */
+.secao_2 {
+    margin: 60px auto;
+
+}
+
+/* --- CABEÇALHO DA SEÇÃO 2 --- */
+/* ALINHA O CABEÇALHO DA SEÇÃO 2 */
+.servicos_2 {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 50px;
+    justify-content: space-around;
+
+}
+
+/* MUDA AS PROPRIEDADES DO TÍTULO H2 DO CABEÇALHO*/
+.servicos_2 h2 {
+    display: flex;
+    font-size: 36px;
+    color: #123332;
+
+}
+
+/* --- FIM DO CABEÇALHO DA SEÇÃO 2 --- */
+
+/* --- CARDS E CONTAINER DA SEÇÃO 2 --- */
+/* CONTAINER DA SEÇÃO 2 QUE VAI AGRUPAR OS CARDS */
+.container_secao2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 50px;
+    width: 85%;
+    margin: 0 auto;
+
+}
+
+/* CONSTRUÇÃO DOS CARDS */
+.card_secao2 {
+    display: flex;
+    background-color: #253D2D;
+    border-radius: 10px;
+    padding: 40px;
+    flex-direction: column;
+
+}
+
+/* PROPRIEDADES DOS TÍTULOS DOS CARDS */
+.card_secao2 h3 {
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    font-size: 16px;
+    color: #C0674F;
+    text-align: left;
+
+}
+
+/* PROPRIEDADE DOS CONTEÚDOS (DESCRIÇÃO) DOS CARDS DA SEÇÃO 2 */
+.card_secao2 p {
+    font-size: 13px;
+    color: #ffffff;
+    text-align: left;
+    line-height: 1.5;
+}
+
+/* PROPRIEDADES (IMG E ÍCONE) ALINHA A IMAGEM (PASSO) À ESQUERDA E O ÍCONE À DIREITA */
+.card_topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+
+}
+
+/* --- FIM DOS CARDS E CONTAINER DA SEÇÃO 2 --- */
+/* --- FIM DA SEÇÃO DE SERVIÇOS 2 --- */
+
+/* --- SEÇÃO DE SERVIÇOS 3 --- */
+/* AGRUPANDO TODA PARTE DE SERVIÇOS SEÇÃO 3 */
+.secao_3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
+
+}
+
+/* --- CABEÇALHO DA SEÇÃO 3 --- */
+/* AGRUPANDO TODOS OS CARDS E CABEÇALHO DA SEÇÃO 3 */
+.servicos_3 {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 10%;
+
+}
+
+/* PROPRIEDADES DO TÍTULO DA SEÇÃO 3*/
+.servicos_3 h2 {
+    display: flex;
+    font-size: 36px;
+    color: #123332;
+}
+
+/* --- FIM DO CABEÇALHO DA SEÇÃO 3 --- */
+
+/* PROPRIEDADES AGRUPANDO A IMAGEM */
+.container_img3 {
+    display: flex;
+    align-items: start;
+    margin-top: 80px;
+    margin-left: 10%;
+
+}
+
+
+/* VAI AGRUPAR OS CARDS(1,2) DA SEÇÃO 3 */
+.container_secao3 {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+
+}
+
+/*  AGRUPANDO TODOS OS CARDS DA SEÇÃO 3  */
+.card_pai_secao3 {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    margin-right: 10%;
+    line-height: 1.5;
+
+}
+
+/* PROPRIEDADES DA FORMAÇÃO DOS CARDS */
+.card_servicos3 {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    flex: 1;
+    border: 2px solid #eeeeee;
+
+}
+
+/* AGRUPANDO O TOPO DOS CARDS TÍTULOS/SUBTÍTULOS E ÍCONES */
+.card_secao3_topo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+
+}
+
+/* --- FIM DA SEÇÃO DE SERVIÇOS 3 --- */
+
+/* --- SEÇÃO DE SERVIÇOS 4 --- */
+/* AGRUPA TODA A SEÇÃO 4 */
+.servicos_4 {
+    display: flex;
+    flex-direction: row;
+
+}
+
+/* CABEÇALHO DA SEÇÃO 4  */
+.container_secao4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 250px;
+    text-align: center;
+
+}
+
+/* FIM DO CABEÇALHO DA SEÇÃO 4 */
+
+/* AGRUPANDO A PARTE DOS BOTÕES (PLATAFORMA E CONTATO)*/
+.nav-botoes_secao3 {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+/* PROPRIEDADE DO BOTÃO DE PLATAFORMA */
+.btn-plataforma {
+    display: flex;
+    background-color: #253D2D;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 10px;
+    transition: background 0.4s;
+    gap: 12px;
+
+}
+
+/* PROPRIEDADE DO BOTÃO DE CONTATO */
+.btn-contato {
+    display: flex;
+    text-decoration: none;
+    background-color: #EF9B83;
+    color: #6D3220;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background 0.4s;
+    gap: 12px;
+
+}
+
+/* ANIMAÇÃO DO BOTÃO DE CONTATO*/
+.btn-contato:hover {
+    background-color: #C0674F;
+
+}
+
+
+/* ANIMAÇÃO DO BOTÃO DE PLATAFORMA */
+.btn-plataforma:hover {
+    background-color: #1b4d3e;
+
+}
+
+/* --- FIM DA SEÇÃO DE SERVIÇOS 4 --- */
+
+/* --- SEÇÃO DE SERVIÇOS 5 --- */
+/* AGRUPANDO TODA PARTE DA SEÇÃO 5 */
+.servicos5 {
+    display: flex;
+    background-color: #253D2D;
+    margin-top: 100px;
+    flex-direction: column;
+
+}
+
+/* MUDA AS PROPRIEDADES DAS TÍTULOS */
+.titulo_secao5 {
+    font-size: 16px;
+    color: #FFFFFF;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+/* MUDA AS PROPRIEDADES DAS DESCRIÇÕES */
+.descricao_secao5 {
+    font-size: 13px;
+    color: #FFFFFF;
+    max-width: 600px;
+    margin-bottom: 60px;
+    line-height: 1.5;
+
+}
+
+.container_pai5 {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 40px;
+
+}
+
+.container1_servicos5 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 16px;
+
+}
+
+.container2_servicos5 {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.nav_secao5 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.nav_secao5 a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+
+}
