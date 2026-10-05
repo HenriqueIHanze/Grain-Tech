@@ -15,25 +15,20 @@
     <title>Tela de Início</title>
   </head>
   <body>
-    <header>
-      <!--Cabeçalho da página-->
-      <img class="logo" src="../img/Container.png" alt="GrainTech" />
-      <nav>
-        <ul class="cabecalho">
-          <li><a href="../siteInstitucional/inicio.html">Início</a></li>
-          <li><a href="../siteInstitucional/servicos.html">Serviço</a></li>
-          <li><a href="../siteInstitucional/sobreNos.html">Sobre Nós</a></li>
-          <li><a href="../siteInstitucional/contato.html">Contato</a></li>
-        </ul>
-        <ul class="acesso">
-          <li><a href="../site/login.html">Login</a></li>
-          <li>
-            <a class="botao" href="../site/cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </nav>
-      <!--Fim do Cabeçalho-->
-    </header>
+     <nav class="navbar">
+  <img src="../img/Container.png" alt="GrainTech" class="logo-nav">
+  <ul class="links-nav">
+    <li><a href="inicio.html" class="ativo">Início</a></li>
+    <li><a href="servicos.html">Serviço</a></li>
+    <li><a href="simulador.html">Simulador</a></li>
+    <li><a href="sobreNos.html">Sobre Nós</a></li>
+    <li><a href="contato.html">Contato</a></li>
+  </ul>
+  <div class="acoes-nav">
+    <a href="../site/login.html">Login</a>
+    <a href="../site/cadastro.html" class="botao-cadastro">Cadastro</a>
+  </div>
+</nav>
 
     <main>
       <section class="hero">
@@ -200,47 +195,20 @@
       </section>
     </main>
 
-    <footer>
-      <div class="grade-rodape">
-        <div>
-          <img class="logo-rodape" src="../img/Container.png" alt="GrainTech" />
-          <p>
-            Simplificando o monitoramento e a preditiva de armazenagem de grãos
-            com telemetria e IoT.
-          </p>
-        </div>
-        <div>
-          <h4>Navegação</h4>
-          <ul>
-            <li><a href="../siteInstitucional/inicio.html">Início</a></li>
-            <li><a href="../siteInstitucional/servicos.html">Serviço</a></li>
-            <li><a href="../siteInstitucional/planos.html">Planos</a></li>
-            <li><a href="../siteInstitucional/sobreNos.html">Sobre Nós</a></li>
-            <li><a href="../siteInstitucional/contato.html">Contato</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Termos & Conformidade</h4>
-          <ul>
-            <li>Termos de Serviço</li>
-            <li>Política de Privacidade</li>
-            <li>Segurança da Informação</li>
-            <li>Conformidade LGPD</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Contato Institucional</h4>
-          <ul>
-            <li>Operações & Telemetria Industrial</li>
-            <li>contato@graintech.agr.br</li>
-            <li>+55 (19) 3942-8810</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="rodape-inferior">
-        <p>&copy; 2026 GrainTech. Todos os direitos reservados.</p>
-      </div>
-    </footer>
+     <footer>
+  <div class="grade-rodape">
+    <div><div class="logo">GrainTech</div><p>Simplificando o monitoramento e a preditiva de armazenagem de grãos com telemetria e IoT.</p></div>
+    <div><h4>Navegação</h4><ul>
+      <li><a href="inicio.html">Início</a></li>
+      <li><a href="servicos.html">Serviço</a></li>
+      <li><a href="simulador.html">Simulador</a></li>
+      <li><a href="sobreNos.html">Sobre Nós</a></li>
+      <li><a href="contato.html">Contato</a></li>
+    </ul></div>
+    <div><h4>Termos & Conformidade</h4><ul><li>Termos de Serviço</li><li>Política de Privacidade</li><li>Segurança da Informação</li><li>Conformidade LGPD</li></ul></div>
+    <div><h4>Contato Institucional</h4><ul><li>Operações & Telemetria Industrial</li><li>contato@graintech.agr.br</li><li>+55 (19) 3942-8810</li></ul></div>
+  </div>
+  <div class="rodape-inferior">&copy; 2026 GrainTech. Todos os direitos reservados.</div>
+</footer>
   </body>
 </html>

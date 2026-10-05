@@ -1,4 +1,3 @@
-
 /* 1. VARIÁVEIS */
 :root {
   --verde-900: #1e3a2c;   /* títulos e textos escuros */
@@ -13,6 +12,56 @@
   --fonte-titulo: "Poppins", sans-serif;
   --fonte-texto: "Inter", sans-serif;
 }
+
+.navbar{
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 40px;
+    border-bottom:1px solid #e4ddc9;
+    font-family:Arial, Helvetica, sans-serif;
+    line-height:1.5;
+}
+.logo-nav{
+    display:block;
+    height:30px;
+    width:auto;
+}
+.links-nav{
+    list-style:none;
+    display:flex;
+    gap:30px;
+    margin:1em 0;
+    padding:0 0 0 40px;
+}
+.links-nav a{
+    text-decoration:none;
+    color:#2b2f2a;
+    font-size:15px;
+}
+.links-nav a.ativo{
+    color:#e0693e;
+    border-bottom:2px solid #e0693e;
+    padding-bottom:4px;
+}
+.acoes-nav{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+.acoes-nav a{
+    text-decoration:none;
+    color:#2b2f2a;
+    font-size:15px;
+}
+.acoes-nav a.botao-cadastro{
+    background:#e0693e;
+    color:#fff;
+    padding:10px 20px;
+    border-radius:10px;
+}
+ 
 
 /* 2. RESET E BASE ---------------------------------------------
    Cada navegador tem margens padrão diferentes. O box-sizing: border-box faz
@@ -71,33 +120,6 @@ h2 {
 
 .botao-escuro { background: rgba(37, 64, 50, 0.88); color: #fff; }
 .botao-escuro:hover { background: var(--verde-800); }
-
-/* 4. CABEÇALHO */
-header {
-  display: flex;
-  align-items: center;
-  padding: 1.5rem 3rem;
-  background: #fff;
-}
-
-.logo { width: 8.5rem; height: auto; }
-
-header nav {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
-header nav ul {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-header nav a { font-size: 0.875rem; font-weight: 500; color: #1c2b24; }
-header nav a:hover { color: var(--salmao-escuro); }
-
-.cabecalho { margin: 0 auto; }
 
 /* 5. HERO */
 .hero {
@@ -408,57 +430,72 @@ header nav a:hover { color: var(--salmao-escuro); }
   max-width: none;
 }
 
-/* 10. RODAPÉ  */
-footer {
-  padding: 4.5rem 3.25rem 5rem;
-  background: var(--verde-800);
-  color: #fff;
+
+/*10. Footer */
+footer{
+    background:#16281f;
+    color:#d9ddd6;
+    padding:50px 25px 25px;
+    font-family:Arial, Helvetica, sans-serif;
+    line-height:1.5;
 }
-
-.grade-rodape {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3.4rem;
-  align-items: start;
+footer a{
+    color:inherit;
+    text-decoration:none;
 }
-
-/* A logo é a mesma imagem do cabeçalho, pintada de branco com filter */
-.logo-rodape {
-  width: 8.5rem;
-  margin-bottom: 1rem;
-  filter: brightness(0) invert(1);
+footer a:hover{
+    color:#fff;
 }
-
-footer p,
-footer li { font-size: 0.8125rem; line-height: 1.5; color: rgba(255, 255, 255, 0.75); }
-
-.grade-rodape > div:first-child p { max-width: 17.5rem; line-height: 1.7; }
-
-footer h4 {
-  margin-bottom: 1rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fff;
+.grade-rodape{
+    max-width:1120px;
+    margin:0 auto;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap:64px;
 }
-
-footer li + li { margin-top: 0.5rem; }
-footer a:hover { color: var(--salmao); }
-
-.rodape-inferior {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5.5rem;
+.grade-rodape h4{
+    color:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:14px;
+    margin:0 0 14px;
 }
-
+.grade-rodape ul{
+    list-style:none;
+    font-size:13px;
+    margin:0;
+    padding:0;
+}
+.grade-rodape p{
+    font-size:15px;
+    max-width:300px;
+    margin:0;
+    color:inherit;
+}
+.grade-rodape li{
+    font-size:13px;
+    margin-bottom:10px;
+    color:inherit;
+}
+.grade-rodape .logo{
+    color:#fff;
+    font-weight:700;
+    font-size:18px;
+    margin-bottom:10px;
+}
+.rodape-inferior{
+    max-width:1120px;
+    margin:32px auto 0;
+    border-top:1px solid rgba(255,255,255,.1);
+    padding-top:16px;
+    font-size:10px;
+    color:#7d8277;
+    text-align:center;
+}
+ 
 /* 11. RESPONSIVO (extra) */
 @media (max-width: 1024px) {
-  header { flex-wrap: wrap; gap: 1rem; padding: 1rem 1.5rem; }
-  header nav { flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
-  .cabecalho { margin: 0; flex-wrap: wrap; gap: 1rem 1.5rem; }
-
   .hero { min-height: 34rem; }
   .hero h1 { font-size: 2.5rem; }
 
@@ -476,10 +513,4 @@ footer a:hover { color: var(--salmao); }
   .transf_dados { width: calc(100% - 3rem); margin: 4rem auto; padding: 2.5rem 1.5rem 0; }
   .transf_dados > img { position: static; height: auto; width: 70%; margin: 1.5rem auto 0; }
 
-  .grade-rodape { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-}
-
-@media (max-width: 600px) {
-  .grade-rodape { grid-template-columns: 1fr; }
-  .rodape-inferior { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }
