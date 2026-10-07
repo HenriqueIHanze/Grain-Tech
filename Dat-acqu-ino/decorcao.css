@@ -1,0 +1,19 @@
+body{
+    background-color: #253D2D;
+    margin: 50px;
+    overflow: hidden; 
+}
+
+ .caixa {
+    background-color: white;
+}
+h1 {
+    color: white;
+    margin: 0 0 auto;
+    padding-left: 45%;
+}
+.grafico {
+    margin: 50px;
+    margin-top: 5px;
+    margin-bottom: 70px;
+}
