@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador Grain Tech</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1 class="title">
+      Maximize a Rentabilidade da sua Safra com a
+      <span style="color: #460000">Grain Tech</span>
+    </h1>
+    <h2 class="subtitle">Não seja refém do mercado na hora da colheita.</h2>
+    <div class="card">
+      <h2>
+        Simulador de Custo de Armazenagem <br />
+        e Perda por Venda Forçada
+      </h2>
+      <div>
+        <div class="container-question">
+          <!-- Select para selecionar o tipo de grão e para o porte do silo -->
+          <p class="text-input">Selecione um grão:</p>
+          <select name="" id="sel_ativo">
+            <option value="0">Selecionar</option>
+            <option value="1">Arroz - R$79.07</option>
+            <option value="2">Milho - R$70.93</option>
+            <option value="3">Soja - R$160.14</option>
+          </select>
+          <div id="msg_tipo_grao"></div>
+        </div>
+
+        <div class="container-question">
+          <!-- Simulador do custo de Armazenagem, e uma comparação de perda por venda forçada. -->
+          <p class="text-input">Selecione um tipo de silo:</p>
+          <select name="" id="sel_silo">
+            <option value="0">Selecionar</option>
+            <option value="1">Pequeno (30 a 500 toneladas)</option>
+            <option value="2">Médio (1.000 a 3.000 toneladas)</option>
+            <option value="3">Grande (6.000 a 15.000 toneladas)</option>
+          </select>
+          <div id="msg_tipo_silo"></div>
+        </div>
+
+        <div class="container-question base-calculo">
+          <!-- Base de calculo escolhida de acordo com a pesquisa. 
+          Armazenagem = 2,00 a 4,50 (2 + 4,50 = 6,50 / 2 = 3,25). Perda = 15,00 a 25,00 (15 + 25 = 40 / 2 = 20) -->
+          <span>(Base de cálculo armazenagem: R$ 3,25 / saca)</span>
+          <span> (Base de cálculo perda: R$ 20,00 / saca)</span>
+        </div>
+        <div class="container-question">
+          <!-- Usuário insere quanto tempo ele deseja armazenar os grãos no silo -->
+          <p class="text-input">Tempo de armazenamento (meses):</p>
+          <input type="text" id="ipt_meses" />
+          <div id="msg_meses"></div>
+        </div>
+        <!-- Botão para acionar o script e simular os custos -->
+        <button onclick="simularcustos()">Simular Custos</button>
+        <br />
+        <!-- Container criado para exibir os calculos -->
+        <div
+          class="container-simulacao"
+          style="display: none"
+          id="div_simulacao_custo_x_perda"
+        ></div>
+      </div>
+      <div>
+        <h2>Agora Simule o Valor de sua Safra</h2>
+        <button onclick="simularsafra()">Simular Valor</button>
+        <div
+          class="container-simulacao"
+          style="display: none"
+          id="div_simulacao_valor_safra"
+        ></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // Fomata o número para dinheiro moeda real
+    formatador = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+    // Variáveis de preço base para os grãos
+    let preco_milho = 70.93;
+    let preco_arroz = 79.07;
+    let preco_soja = 160.14;
+
+    // Variáveis de custo base de armazenamento e perda por venda antecipada
+    let base_armazenamento = 3.25;
+    let base_prejuizo = 20.0;
+
+    // Variáveis do silo, já calculando para sacas, já que não vamos usar as medidas toneladas e kg
+    let silo_pequeno = (265 * 1000) / 60;
+    let silo_medio = (2000 * 1000) / 60;
+    let silo_grande = (10500 * 1000) / 60;
+    let silo_pequeno_arroz = (265 * 1000) / 50;
+    let silo_medio_arroz = (2000 * 1000) / 50;
+    let silo_grande_arroz = (10500 * 1000) / 50;
+
+    // Declarando variável para receber o tipo de silo selecionado
+    let tipo_silo = 0;
+
+    // Variável para armazenar o valor que o produtor poderá receber com o silo completo
+    let valor_silo_completo = 0;
+    let tempo_armazenado = 0;
+    let grao_selecionado = 0;
+    let silo_selecionado = 0;
+
+    function simularcustos() {
+      // Limpa as mensagens de erros
+      msg_meses.innerHTML = "";
+      msg_tipo_grao.innerHTML = "";
+      msg_tipo_silo.innerHTML = "";
+
+      // Pega os valores digitados pelo usuário
+      let meses = Number(ipt_meses.value);
+      let silo = Number(sel_silo.value);
+      let grao = Number(sel_ativo.value);
+
+      // If que valida se o grão foi selecionado
+      if (grao == 0) {
+        msg_tipo_grao.innerHTML = `<p class="text-error">Selecione um grão para prosseguirmos a simulação</p>`;
+      } else if (silo == 0) {
+        msg_tipo_silo.innerHTML = `<p class="text-error">Selecione um silo para prosseguirmos a simulação</p>`;
+      } else if (meses <= 0) {
+        msg_meses.innerHTML = `<p class="text-error">Digite um mês válido</p>`;
+      } else {
+        //   passo os valores para as variaveis globais para usar em outras funções
+        tempo_armazenado = meses;
+        grao_selecionado = grao;
+        silo_selecionado = silo;
+        // Valida o grão escolhido
+        if (grao_selecionado == 1) {
+          // Após a validação ele verifica o tipo de silo escolhido e atribui valor ao tipo_silo de acordo com o silo selecionado no select
+          if (silo_selecionado == 1) {
+            tipo_silo = silo_pequeno_arroz;
+          } else if (silo_selecionado == 2) {
+            tipo_silo = silo_medio_arroz;
+          } else {
+            tipo_silo = silo_grande_arroz;
+          }
+        } else {
+          // Como o arroz tem uma saca diferente dos demais, foi criado um if e else para separar
+          if (silo == 1) {
+            tipo_silo = silo_pequeno;
+          } else if (silo == 2) {
+            tipo_silo = silo_medio;
+          } else {
+            tipo_silo = silo_grande;
+          }
+        }
+        // Variaveis para executar os cálculos
+        // (sacas  multiplicado pelo custo base de armazenamento) * multiplica pela quantidade de meses para definir o valor exato de quanto custa armazenar por determinado tempo.
+        let calculo_armazenamento =
+          tipo_silo * base_armazenamento * tempo_armazenado;
+
+        // Calcula o prejuízo pelo custo base de prejuízo
+        let prejuizo = tipo_silo * base_prejuizo;
+
+        // Calcula a margem entre prejuízo e custo de armazenamento
+        let margem = prejuizo - calculo_armazenamento;
+
+        div_simulacao_custo_x_perda.style.display = "flex";
+
+        // fazer um if para verificar os meses para que não seja maior que 12 caso passe pedir ao usuario para inserir um novo valor
+        if (meses <= 12) {
+          // If, else if e else utilizado para comparar o prejuizo com custo de armazenamento e logo em seguida exibir uma resposta ao usuário
+          if (prejuizo > calculo_armazenamento) {
+            div_simulacao_custo_x_perda.innerHTML = `
+              <p class="red text-result">O prejuízo por venda forçada seria de <b>${formatador.format(prejuizo)}</b>.</p>
+              <p class="red text-result">Enquanto o custo total para armazenar por ${tempo_armazenado} meses será de <b>${formatador.format(calculo_armazenamento)}</b>.</p>
+              <p class="green text-result"><b>Estratégia Recomendada:</b> <br>Armazenar os grãos evitará a perda e garantirá uma retenção de <b>${formatador.format(margem)}</b>.</p>`;
+          } else if (prejuizo == calculo_armazenamento) {
+            div_simulacao_custo_x_perda.innerHTML = `
+              <p class="yellow text-result"><b>Ponto de Equilíbrio atingido.</b></p>
+              <p class="yellow text-result">A decisão deve considerar outras variáveis de mercado.</p>`;
+          } else {
+            div_simulacao_custo_x_perda.innerHTML = `
+              <p class="green text-result">O custo de armazenagem atual, é maior que a perda na venda imediata!</p>
+              <p class="red text-result"><b>Atenção:</b> Armazenar por ${tempo_armazenado} meses trará uma despesa extra e injustificada de <b>${formatador.format(margem * -1)}</b>.</p>`;
+          }
+        } else {
+          div_simulacao_custo_x_perda.innerHTML = `
+            <p class="red text-result"><b>Atenção:</b> seu grão pode estar avariado devido a quantidade de meses armazenados.</p>`;
+        }
+      }
+    }
+
+    function simularsafra() {
+      msg_tipo_grao.innerHTML = "";
+      msg_tipo_silo.innerHTML = "";
+
+      // Lê os valores atuais direto dos inputs para não depender do clique no primeiro botão
+      let silo = Number(sel_silo.value);
+      let grao = Number(sel_ativo.value);
+      let meses = Number(ipt_meses.value);
+
+      // If que valida se o grão foi selecionado
+      if (grao == 0) {
+        msg_tipo_grao.innerHTML = `<p class="text-error">Selecione um grão para prosseguirmos a simulação</p>`;
+      } // Senão se o silo foi selecionado
+      else if (silo == 0) {
+        msg_tipo_silo.innerHTML = `<p class="text-error">Selecione um silo para prosseguirmos a simulação</p>`;
+      } // Senão executa toda a lógica do botão
+      else {
+        if (grao == 1) {
+          // Após a validação ele verifica o tipo de silo escolhido e atribui valor ao tipo_silo de acordo com o silo selecionado no select
+          if (silo == 1) {
+            tipo_silo = silo_pequeno_arroz;
+            valor_silo_completo = tipo_silo * preco_arroz;
+          } else if (silo == 2) {
+            tipo_silo = silo_medio_arroz;
+            valor_silo_completo = tipo_silo * preco_arroz;
+          } else {
+            tipo_silo = silo_grande_arroz;
+            valor_silo_completo = tipo_silo * preco_arroz;
+          }
+        } else if (grao == 2) {
+          if (silo == 1) {
+            tipo_silo = silo_pequeno;
+            valor_silo_completo = tipo_silo * preco_milho;
+          } else if (silo == 2) {
+            tipo_silo = silo_medio;
+            valor_silo_completo = tipo_silo * preco_milho;
+          } else {
+            tipo_silo = silo_grande;
+            valor_silo_completo = tipo_silo * preco_milho;
+          }
+        } else {
+          // validar aqui se passou de 12 meses
+          if (meses <= 12) {
+            if (silo == 1) {
+              tipo_silo = silo_pequeno;
+              valor_silo_completo = tipo_silo * preco_soja;
+            } else if (silo == 2) {
+              tipo_silo = silo_medio;
+              valor_silo_completo = tipo_silo * preco_soja;
+            } else {
+              tipo_silo = silo_grande;
+              valor_silo_completo = tipo_silo * preco_soja;
+            }
+          }
+        }
+
+        div_simulacao_valor_safra.style.display = "flex";
+        
+        // Verifica a restrição de meses para a soja
+        if (grao == 3 && meses > 12) {
+           div_simulacao_valor_safra.innerHTML = `<p class="red text-result"><b>Atenção:</b> seu grão pode estar avariado devido a quantidade de meses armazenados (máximo 12 meses para soja).</p>`;
+        } else {
+           div_simulacao_valor_safra.innerHTML = `<p class="green text-result">O valor da sua safra atingindo a totalidade do silo é de <b>${formatador.format(valor_silo_completo)}</b></p>`;
+        }
+      }
+    }
+  </script>
+</html>
