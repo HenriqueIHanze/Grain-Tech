@@ -214,9 +214,9 @@ body{
 
 .foto{ 
     position:relative; 
-    width:130px; 
-    height:130px; 
-    margin:0 auto; 
+    width: 130px; 
+    height: 170px; 
+    margin:0 auto;
     isolation:isolate; 
 }
 .foto::before{ 
