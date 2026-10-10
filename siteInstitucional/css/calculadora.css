@@ -18,13 +18,13 @@ body {
 
 
 /* ---------- TÍTULO E SUBTÍTULO (fora do card) ---------- */
-.title {
+.titulo {
   font-size: 35px;
   margin: 20px;
   color: #012423;
 }
 
-.subtitle {
+.subtitulo {
   font-size: 23px;
   margin: 35px;
   color: #012423;
@@ -35,7 +35,7 @@ body {
 /* ---------- CARD ESCURO (caixa principal) ----------
    Mesmo tamanho de antes, só ganhou uma sombra
    suave pra "descolar" do fundo. */
-.card {
+.cartao {
   width: 450px;
   border-radius: 25px;
   border: solid 2px #012423;
@@ -51,7 +51,7 @@ body {
 }
 
 /* Barrinha laranja embaixo dos títulos do card (detalhe do site) */
-.card h2::after {
+.cartao h2::after {
   content: "";
   display: block;
   width: 50px;
@@ -63,7 +63,7 @@ body {
 
 /* Linha fininha separando o simulador de custos do simulador da safra.
    O "+" pega a div que vem logo depois de outra div dentro do card. */
-.card > div + div {
+.cartao > div + div {
   border-top: 1px solid rgba(233, 196, 170, 0.25);
   padding-top: 20px;
   margin-top: 10px;
@@ -71,12 +71,12 @@ body {
 
 
 /* ---------- PERGUNTAS (grão, silo, meses) ---------- */
-.container-question {
+.bloco-pergunta {
   padding: 12px 12px;
 }
 
 /* Textinho em cima de cada campo */
-.text-input {
+.texto-campo {
   text-align: left;
   font-size: 14px;
   margin-bottom: 6px;
@@ -158,7 +158,7 @@ button:active {
 /* ---------- CAIXA DE RESULTADO ----------
    Começa escondida (o JS mostra com display: flex).
    Ganhou uma faixa laranja do lado esquerdo. */
-.container-simulacao {
+.caixa-resultado {
   background-color: #f7f3ee;
   border-radius: 8px;
   border-left: 5px solid #e0693e;
@@ -170,21 +170,21 @@ button:active {
 }
 
 /* Texto dos resultados */
-.text-result {
+.texto-resultado {
   font-size: 15px;
   text-align: left;
 }
 
 /* Cores dos resultados: verde = bom, amarelo = neutro, vermelho = ruim */
-.green {
+.verde {
   color: #0d2f2e;
 }
 
-.yellow {
+.amarelo {
   color: #7a7b3a;
 }
 
-.red {
+.vermelho {
   color: #882006;
 }
 
@@ -192,7 +192,7 @@ button:active {
 /* ---------- MENSAGENS DE ERRO ----------
    Como aparecem no fundo escuro do card, troquei o vermelho
    puro por um tom mais claro pra dar pra ler melhor. */
-.text-error {
+.texto-erro {
   color: #ff8a75;
   font-weight: bold;
   font-size: 14px;
