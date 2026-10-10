@@ -1,9 +1,18 @@
+/* ESTILO DA PÁGINA DE CONTATO (contato.html)
+   Dica: o arquivo segue a mesma ordem da página,
+   de cima pra baixo. Use Ctrl+F no nome da seção. */
+
+
+/* - CONFIGURAÇÃO GERAL -
+   Zera as margens que o navegador coloca por padrão
+   e faz o tamanho das caixas contar a borda e o espaçamento. */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Fonte, cor do texto e fundo que valem pra página toda */
 body {
     font-family: Arial, Helvetica, sans-serif;
     color: #2b2f2a;
@@ -11,71 +20,75 @@ body {
     line-height: 1.5;
 }
 
+/* Caixa que centraliza o conteúdo e limita a largura */
 .container {
     max-width: 1120px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-/* Barra de navegação */
-.navbar{
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:20px 40px;
-    border-bottom:1px solid #e4ddc9;
-    font-family:Arial, Helvetica, sans-serif;
-    line-height:1.5;
-}
-.logo-nav{
-    display:block;
-    height:30px;
-    width:auto;
-}
-.links-nav{
-    list-style:none;
-    display:flex;
-    gap:30px;
-    margin:1em 0;
-    padding:0 0 0 40px;
-}
-.links-nav a{
-    text-decoration:none;
-    color:#2b2f2a;
-    font-size:15px;
-}
-.links-nav a.ativo{
-    color:#e0693e;
-    border-bottom:2px solid #e0693e;
-    padding-bottom:4px;
-}
-.acoes-nav{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
-.acoes-nav a{
-    text-decoration:none;
-    color:#2b2f2a;
-    font-size:15px;
-}
-.acoes-nav a.botao-cadastro{
-    background:#e0693e;
-    color:#fff;
-    padding:10px 20px;
-    border-radius:10px;
-}
- 
 
-.botao-cadastro {
+/* - BARRA DE NAVEGAÇÃO (topo) -
+   Logo na esquerda, links no meio e login/cadastro na direita.
+   O "flex" coloca tudo em linha e o "space-between"
+   empurra cada grupo pra um canto. */
+.navbar {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid #e4ddc9;
+}
+
+/* Imagem do logo: só controlamos a altura e a largura se ajusta sozinha */
+.logo-nav {
+    display: block;
+    height: 30px;
+    width: auto;
+}
+
+/* Lista de links do meio (Início, Serviço, Simulador...) */
+.links-nav {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 1em 0;
+    padding: 0 0 0 40px;
+}
+
+/* Estilo comum dos links do menu e do login */
+.links-nav a,
+.acoes-nav a {
+    text-decoration: none;
+    color: #2b2f2a;
+    font-size: 15px;
+}
+
+/* Link da página atual: fica laranja e com sublinhado */
+.links-nav a.ativo {
+    color: #e0693e;
+    border-bottom: 2px solid #e0693e;
+    padding-bottom: 4px;
+}
+
+/* Grupo da direita (Login + Cadastro) */
+.acoes-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Botão laranja de Cadastro */
+.acoes-nav a.botao-cadastro {
     background: #e0693e;
-    color: #fff !important;
+    color: #fff;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
-/* Cabeçalho */
+
+/* ---------- CABEÇALHO (faixa verde "Fale Conosco") ---------- */
 .cabecalho {
     background: #1c3328;
     color: #fff;
@@ -83,6 +96,7 @@ body {
     padding: 64px 24px 72px;
 }
 
+/* Etiquetinha laranja "CANAL DE ATENDIMENTO" */
 .selo {
     display: inline-block;
     background: #e0693e;
@@ -97,6 +111,7 @@ body {
     margin-bottom: 16px;
 }
 
+/* Texto de apoio embaixo do título (max-width evita linhas muito longas) */
 .cabecalho p {
     color: #d9ddd6;
     max-width: 560px;
@@ -104,7 +119,10 @@ body {
     font-size: 15px;
 }
 
-/* Formulário e canais */
+
+/* ---------- FORMULÁRIO E CANAIS DIRETOS ----------
+   A seção usa "grid" com 2 colunas: formulário (maior)
+   à esquerda e canais de contato à direita. */
 .secao-principal {
     padding: 56px 24px;
 }
@@ -115,6 +133,7 @@ body {
     gap: 32px;
 }
 
+/* Títulos e subtítulos das duas colunas */
 .titulo-secao {
     font-size: 22px;
     font-weight: 700;
@@ -127,6 +146,7 @@ body {
     margin-bottom: 24px;
 }
 
+/* Caixa bege que envolve o formulário */
 .cartao {
     background: #f0ead9;
     border: 1px solid #e4ddc9;
@@ -134,6 +154,7 @@ body {
     padding: 32px;
 }
 
+/* Linha com 2 campos lado a lado (nome/e-mail, telefone/assunto) */
 .linha-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -141,6 +162,7 @@ body {
     margin-bottom: 16px;
 }
 
+/* Cada campo: o texto (label) fica em cima e o input embaixo */
 .campo {
     display: flex;
     flex-direction: column;
@@ -153,10 +175,12 @@ body {
     margin-bottom: 6px;
 }
 
+/* Asterisco laranja de campo obrigatório */
 .campo label span {
     color: #e0693e;
 }
 
+/* Visual igual para input, select e textarea */
 .campo input,
 .campo select,
 .campo textarea {
@@ -169,17 +193,23 @@ body {
     outline: none;
 }
 
+/* Quando o usuário clica no campo, a borda fica laranja */
 .campo input:focus,
 .campo select:focus,
 .campo textarea:focus {
     border-color: #e0693e;
 }
 
+/* Caixa de mensagem: altura mínima e só estica pra baixo */
 .campo textarea {
     resize: vertical;
     min-height: 100px;
 }
 
+
+/* - BOTÕES -
+   ".botao" tem o formato base. Depois combinamos com
+   ".botao-laranja" ou ".botao-contorno" no HTML. */
 .botao {
     display: inline-block;
     border: none;
@@ -190,6 +220,7 @@ body {
     cursor: pointer;
 }
 
+/* Botão laranja preenchido (escurece quando passa o mouse) */
 .botao-laranja {
     width: 100%;
     background: #e0693e;
@@ -200,22 +231,27 @@ body {
     background: #c85831;
 }
 
+/* Botão transparente só com borda branca (usado no fundo verde) */
 .botao-contorno {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, .5);
     color: #fff;
 }
 
+
+/* - CANAIS DIRETOS (e-mail, telefone, endereço) - */
 .lista-canais {
     list-style: none;
 }
 
+/* Cada item: ícone de um lado e texto do outro */
 .lista-canais li {
     display: flex;
     gap: 14px;
     margin-bottom: 20px;
 }
 
+/* Bolinha verde com o ícone dentro */
 .icone-canal {
     width: 40px;
     height: 40px;
@@ -228,17 +264,23 @@ body {
     justify-content: center;
 }
 
+/* Palavrinha cinza em cima (E-mail, Telefone...) */
 .rotulo {
     font-size: 12px;
     color: #6b6f68;
     text-transform: uppercase;
 }
 
+/* Informação em negrito embaixo */
 .valor {
     font-size: 14px;
     font-weight: 600;
 }
 
+
+/* - ÁREA DO MAPA -
+   É só um bloco listrado reservando o espaço.
+   Quando tiver o mapa de verdade, é só colocar ele aqui dentro. */
 .area-mapa {
     margin-top: 24px;
     height: 190px;
@@ -254,6 +296,7 @@ body {
     padding: 12px;
 }
 
+/* Botãozinho branco embaixo do mapa */
 .link-mapa {
     display: block;
     text-align: center;
@@ -267,7 +310,8 @@ body {
     cursor: pointer;
 }
 
-/* Perguntas frequentes */
+
+/* ---------- PERGUNTAS FREQUENTES (FAQ) ---------- */
 .secao-faq {
     background: #f0ead9;
     padding: 64px 24px;
@@ -293,6 +337,7 @@ body {
     text-align: left;
 }
 
+/* Caixa branca de cada pergunta */
 .item-faq {
     background: #fff;
     border: 1px solid #e4ddc9;
@@ -300,41 +345,59 @@ body {
     margin-bottom: 12px;
 }
 
-.item-faq summary {
+/* TRUQUE DO FAQ SEM JAVASCRIPT:
+   cada pergunta tem um checkbox escondido + um label.
+   Clicar no label marca/desmarca o checkbox, e o CSS
+   mostra ou esconde a resposta de acordo com isso. */
+.item-faq input {
+    display: none;
+}
+
+/* A pergunta (parte clicável) */
+.item-faq label {
+    display: block;
     padding: 18px 22px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    list-style: none;
 }
 
-.item-faq summary::-webkit-details-marker {
-    display: none;
-}
-
-.item-faq summary::after {
+/* Setinha pra baixo no canto direito (fica fechado) */
+.item-faq label::after {
     content: "\25BC";
     float: right;
     color: #6b6f68;
 }
 
-.item-faq[open] summary::after {
+/* Com o checkbox marcado, a setinha vira pra cima.
+   O sinal "+" pega o label que vem logo depois do input. */
+.item-faq input:checked + label::after {
     content: "\25B2";
 }
 
+/* A resposta começa escondida... */
 .resposta-faq {
+    display: none;
     padding: 0 22px 20px;
     color: #6b6f68;
     font-size: 14px;
 }
 
-/* Chamada para ação */
+/* ...e aparece quando o checkbox está marcado.
+   O sinal "~" pega a resposta que vem depois do input. */
+.item-faq input:checked ~ .resposta-faq {
+    display: block;
+}
+
+
+/* - CHAMADA PARA AÇÃO (faixa verde antes do rodapé) - */
 .secao-cta {
     background: #1c3328;
     color: #fff;
     padding: 48px 24px;
 }
 
+/* Texto na esquerda e botões na direita */
 .conteudo-cta {
     max-width: 1120px;
     margin: 0 auto;
@@ -360,65 +423,71 @@ body {
     gap: 12px;
 }
 
-/* Rodapé */
-footer{
-    background:#16281f;
-    color:#d9ddd6;
-    padding:50px 25px 25px;
-    font-family:Arial, Helvetica, sans-serif;
-    line-height:1.5;
+
+/* - RODAPÉ - */
+footer {
+    background: #16281f;
+    color: #d9ddd6;
+    padding: 50px 25px 25px;
 }
-footer a{
-    color:inherit;
-    text-decoration:none;
+
+/* Links do rodapé herdam a cor e ficam brancos ao passar o mouse */
+footer a {
+    color: inherit;
+    text-decoration: none;
 }
-footer a:hover{
-    color:#fff;
+
+footer a:hover {
+    color: #fff;
 }
-.grade-rodape{
-    max-width:1120px;
-    margin:0 auto;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    gap:64px;
+
+/* As 4 colunas ficam em linha, centralizadas, com espaço entre elas */
+.grade-rodape {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 64px;
 }
-.grade-rodape h4{
-    color:#fff;
-    font-family:Arial, Helvetica, sans-serif;
-    font-weight:bold;
-    font-size:14px;
-    margin:0 0 14px;
+
+/* Títulos das colunas (Navegação, Termos...) */
+.grade-rodape h4 {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 14px;
 }
-.grade-rodape ul{
-    list-style:none;
-    font-size:13px;
-    margin:0;
-    padding:0;
+
+/* Listas de links */
+.grade-rodape ul {
+    list-style: none;
 }
-.grade-rodape p{
-    font-size:15px;
-    max-width:300px;
-    margin:0;
-    color:inherit;
+
+.grade-rodape li {
+    font-size: 13px;
+    margin-bottom: 10px;
 }
-.grade-rodape li{
-    font-size:13px;
-    margin-bottom:10px;
-    color:inherit;
+
+/* Texto de descrição da empresa (primeira coluna) */
+.grade-rodape p {
+    font-size: 15px;
+    max-width: 300px;
 }
-.grade-rodape .logo{
-    color:#fff;
-    font-weight:700;
-    font-size:18px;
-    margin-bottom:10px;
+
+.grade-rodape .logo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 10px;
 }
-.rodape-inferior{
-    max-width:1120px;
-    margin:32px auto 0;
-    border-top:1px solid rgba(255,255,255,.1);
-    padding-top:16px;
-    font-size:10px;
-    color:#7d8277;
-    text-align:center;
+
+/* Linha de direitos autorais lá embaixo */
+.rodape-inferior {
+    max-width: 1120px;
+    margin: 32px auto 0;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    padding-top: 16px;
+    font-size: 10px;
+    color: #7d8277;
+    text-align: center;
 }
