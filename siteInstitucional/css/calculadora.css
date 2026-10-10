@@ -1,11 +1,9 @@
-/* =====================================================
-   ESTILO DO SIMULADOR (calculadora.css)
+/* ESTILO DO SIMULADOR (calculadora.css)
    O formato da página continua o mesmo do protótipo,
-   só deixei tudo mais bonito e parecido com o site.
-   ===================================================== */
+   só deixei tudo mais bonito e parecido com o site. */
 
 
-/* ---------- CONFIGURAÇÃO GERAL ----------
+/* - CONFIGURAÇÃO GERAL -
    Fonte, fundo bege e centralização da página.
    (corrigi a ordem da fonte: a genérica "sans-serif" vai por último) */
 body {
@@ -17,7 +15,7 @@ body {
 }
 
 
-/* ---------- TÍTULO E SUBTÍTULO (fora do card) ---------- */
+/* - TÍTULO E SUBTÍTULO (fora do card) - */
 .titulo {
   font-size: 35px;
   margin: 20px;
@@ -32,7 +30,7 @@ body {
 }
 
 
-/* ---------- CARD ESCURO (caixa principal) ----------
+/* - CARD ESCURO (caixa principal) -
    Mesmo tamanho de antes, só ganhou uma sombra
    suave pra "descolar" do fundo. */
 .cartao {
@@ -70,7 +68,7 @@ body {
 }
 
 
-/* ---------- PERGUNTAS (grão, silo, meses) ---------- */
+/* - PERGUNTAS (grão, silo, meses) - */
 .bloco-pergunta {
   padding: 12px 12px;
 }
@@ -114,7 +112,7 @@ body {
 }
 
 
-/* ---------- BASE DE CÁLCULO (textos cinzas) ----------
+/* - BASE DE CÁLCULO (textos cinzas) -
    Troquei o "span" geral por ".base-calculo span" pra não
    desbotar o "Grain Tech" do título sem querer. */
 .base-calculo {
@@ -130,7 +128,7 @@ body {
 }
 
 
-/* ---------- BOTÕES ---------- */
+/* - BOTÕES - */
 button {
   width: 100%;
   margin-top: 10px;
@@ -155,7 +153,7 @@ button:active {
 }
 
 
-/* ---------- CAIXA DE RESULTADO ----------
+/* - CAIXA DE RESULTADO -
    Começa escondida (o JS mostra com display: flex).
    Ganhou uma faixa laranja do lado esquerdo. */
 .caixa-resultado {
@@ -189,7 +187,7 @@ button:active {
 }
 
 
-/* ---------- MENSAGENS DE ERRO ----------
+/* - MENSAGENS DE ERRO -
    Como aparecem no fundo escuro do card, troquei o vermelho
    puro por um tom mais claro pra dar pra ler melhor. */
 .texto-erro {
