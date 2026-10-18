@@ -8,9 +8,8 @@
    (corrigi a ordem da fonte: a genérica "sans-serif" vai por último) */
 body {
   text-align: center;
-  width: fit-content;
   margin: auto;
-  background-color: #f7f3ee;
+  background: #f6f1e6;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -27,6 +26,63 @@ body {
   margin: 35px;
   color: #012423;
   font-weight: 600;
+}
+
+/*--- CABEÇALHO NAVBAR AGRUPANDO LINKS DAS PÁGINAS ---*/
+.navbar {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid #e4ddc9;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+.logo-nav {
+  display: block;
+  height: 30px;
+  width: auto;
+}
+
+.links-nav {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 1em 0;
+  padding: 0 0 0 40px;
+}
+
+.links-nav a {
+  text-decoration: none;
+  color: #2b2f2a;
+  font-size: 15px;
+}
+
+.links-nav a.ativo {
+  color: #e0693e;
+  border-bottom: 2px solid #e0693e;
+  padding-bottom: 4px;
+}
+
+.acoes-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.acoes-nav a {
+  text-decoration: none;
+  color: #2b2f2a;
+  font-size: 15px;
+}
+
+.acoes-nav a.botao-cadastro {
+  background: #e0693e;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 
@@ -61,7 +117,7 @@ body {
 
 /* Linha fininha separando o simulador de custos do simulador da safra.
    O "+" pega a div que vem logo depois de outra div dentro do card. */
-.cartao > div + div {
+.cartao>div+div {
   border-top: 1px solid rgba(233, 196, 170, 0.25);
   padding-top: 20px;
   margin-top: 10px;
@@ -184,6 +240,11 @@ button:active {
 
 .vermelho {
   color: #882006;
+}
+
+.texto-resultado-alinhado {
+    margin: 4px 0;
+    line-height: 1.2;
 }
 
 

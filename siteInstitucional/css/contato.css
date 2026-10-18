@@ -283,9 +283,7 @@ body {
    Quando tiver o mapa de verdade, é só colocar ele aqui dentro. */
 .area-mapa {
     margin-top: 24px;
-    height: 190px;
-    background: repeating-linear-gradient(45deg, #eef0e6, #eef0e6 10px, #e7e9dd 10px, #e7e9dd 20px);
-    border: 1px dashed #e4ddc9;
+    border: 3px dashed #e4ddc9;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -294,6 +292,12 @@ body {
     font-size: 13px;
     text-align: center;
     padding: 12px;
+}
+
+/* propriedades da imagem do mapa */
+.area-mapa img {
+    width: 100%;
+    height: auto;
 }
 
 /* Botãozinho branco embaixo do mapa */

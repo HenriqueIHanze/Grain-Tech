@@ -1,131 +1,188 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fale Conosco - GrainTech</title>
-<link rel="stylesheet" href="css/contato.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fale Conosco - GrainTech</title>
+  <link rel="stylesheet" href="css/contato.css">
 </head>
+
 <body>
 
-<!-- Barra de navegação -->
- <nav class="navbar">
-  <img src="../img/Container.png" alt="GrainTech" class="logo-nav">
-  <ul class="links-nav">
-    <li><a href="inicio.html">Início</a></li>
-    <li><a href="servicos.html">Serviço</a></li>
-    <li><a href="simulador.html">Simulador</a></li>
-    <li><a href="sobreNos.html">Sobre Nós</a></li>
-    <li><a href="contato.html" class="ativo">Contato</a></li>
-  </ul>
-  <div class="acoes-nav">
-    <a href="../site/login.html">Login</a>
-    <a href="../site/cadastro.html" class="botao-cadastro">Cadastro</a>
-  </div>
-</nav>
-
-<!-- Cabeçalho -->
-<header class="cabecalho">
-  <span class="selo">CANAL DE ATENDIMENTO</span>
-  <h1>Fale Conosco</h1>
-  <p>Precisa de uma demonstração operacional, tem dúvidas sobre a telemetria em nuvem ou quer fechar uma parceria? Nossa equipe técnica está pronta para atender.</p>
-</header>
-
-<!-- Formulário e canais diretos -->
-<section class="secao-principal">
-  <div class="container grade">
-
-    <div>
-      <h2 class="titulo-secao">Envie uma Mensagem</h2>
-      <p class="subtitulo-secao">Preencha o formulário abaixo e retornaremos em até 24 horas úteis.</p>
-      <div class="cartao">
-        <form>
-          <div class="linha-form">
-            <div class="campo"><label>Seu Nome <span>*</span></label><input placeholder="Digite seu nome completo"></div>
-            <div class="campo"><label>E-mail Corporativo <span>*</span></label><input type="email" placeholder="exemplo@empresa.com"></div>
-          </div>
-          <div class="linha-form">
-            <div class="campo"><label>Telefone / WhatsApp <span>*</span></label><input placeholder="+55 (00) 00000-0000"></div>
-            <div class="campo">
-              <label>Assunto <span>*</span></label>
-              <select><option value="">Selecione o motivo do contato</option><option>Demonstração</option><option>Suporte</option><option>Parceria</option><option>Vendas</option></select>
-            </div>
-          </div>
-          <div class="campo"><label>Mensagem <span>*</span></label><textarea placeholder="Conte pra GrainTech o que você precisa ou quer entender"></textarea></div>
-          <button class="botao botao-laranja">Enviar Mensagem</button>
-        </form>
-      </div>
-    </div>
-
-    <div>
-      <h2 class="titulo-secao">Canais Diretos</h2>
-      <p class="subtitulo-secao">Se preferir, entre em contato direto com nossos departamentos de vendas ou suporte de telemetria.</p>
-      <ul class="lista-canais">
-        <li><div class="icone-canal">&#9993;</div><div><div class="rotulo">E-mail</div><div class="valor">contato@graintech.agr.br</div></div></li>
-        <li><div class="icone-canal">&#9742;</div><div><div class="rotulo">Telefone Direto</div><div class="valor">+55 (19) 3942-8810</div></div></li>
-        <li><div class="icone-canal">&#8962;</div><div><div class="rotulo">Sede Operacional</div><div class="valor">Campinas, SP - Polo de Tecnologia Pós-Colheita</div></div></li>
-      </ul>
-      <!-- Bloco reservado para o mapa (opcional) -->
-      <div class="area-mapa">Bloco reservado para o mapa de localização</div>
-      <div class="link-mapa">Visite Nosso Centro de Pesquisa</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Perguntas frequentes -->
-<section class="secao-faq">
-  <div class="selo-faq">PERGUNTAS FREQUENTES</div>
-  <h2 class="titulo-faq">Dúvidas Frequentes sobre a GrainTech</h2>
-  <div class="lista-faq">
-    <div class="item-faq">
-      <input type="checkbox" id="faq1">
-      <label for="faq1">Como funciona o monitoramento contínuo dos silos?</label>
-      <p class="resposta-faq">Nossa rede de sensores IoT mede temperatura, umidade e volume em tempo real. Os dados são processados na nuvem e apresentados em um dashboard formulado para a sua cooperativa.</p>
-    </div>
-    <div class="item-faq">
-      <input type="checkbox" id="faq2">
-      <label for="faq2">Qual o prazo de instalação dos sensores IoT?</label>
-      <p class="resposta-faq">O prazo médio de instalação e calibração de um complexo de silos padrão é de 5 dias úteis, sem necessidade de paralisar a operação de recebimento de grãos.</p>
-    </div>
-    <div class="item-faq">
-      <input type="checkbox" id="faq3">
-      <label for="faq3">Os sensores funcionam em qualquer tipo de graneleiro?</label>
-      <p class="resposta-faq">Sim, nossos equipamentos são adaptáveis para silos de concreto, silos metálicos ou galpões de armazenagem, com verificação técnica prévia sem custo adicional.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Chamada para ação -->
-<section class="secao-cta">
-  <div class="conteudo-cta">
-    <div>
-      <h3>Pronto para digitalizar seu armazenamento?</h3>
-      <p>Agende uma teleconferência operacional com nossos engenheiros agrícolas.</p>
-    </div>
-    <div class="botoes-cta">
-      <button class="botao botao-laranja" style="width:auto">Agendar Demo Grátis</button>
-      <button class="botao botao-contorno">Simulação de Retorno (ROI)</button>
-    </div>
-  </div>
-</section>
-
-<!-- Rodapé -->
- <footer>
-  <div class="grade-rodape">
-    <div><div class="logo">GrainTech</div><p>Simplificando o monitoramento e a preditiva de armazenagem de grãos com telemetria e IoT.</p></div>
-    <div><h4>Navegação</h4><ul>
+  <!-- Barra de navegação -->
+  <nav class="navbar">
+    <img src="../img/Container.png" alt="GrainTech" class="logo-nav">
+    <ul class="links-nav">
       <li><a href="inicio.html">Início</a></li>
       <li><a href="servicos.html">Serviço</a></li>
       <li><a href="simulador.html">Simulador</a></li>
       <li><a href="sobreNos.html">Sobre Nós</a></li>
-      <li><a href="contato.html">Contato</a></li>
-    </ul></div>
-    <div><h4>Termos & Conformidade</h4><ul><li>Termos de Serviço</li><li>Política de Privacidade</li><li>Segurança da Informação</li><li>Conformidade LGPD</li></ul></div>
-    <div><h4>Contato Institucional</h4><ul><li>Operações & Telemetria Industrial</li><li>contato@graintech.agr.br</li><li>+55 (19) 3942-8810</li></ul></div>
-  </div>
-  <div class="rodape-inferior">&copy; 2026 GrainTech. Todos os direitos reservados.</div>
-</footer>
+      <li><a href="contato.html" class="ativo">Contato</a></li>
+    </ul>
+    <div class="acoes-nav">
+      <a href="../site/login.html">Login</a>
+      <a href="../site/cadastro.html" class="botao-cadastro">Cadastro</a>
+    </div>
+  </nav>
+
+  <!-- Cabeçalho -->
+  <header class="cabecalho">
+    <span class="selo">CANAL DE ATENDIMENTO</span>
+    <h1>Fale Conosco</h1>
+    <p>Precisa de uma demonstração operacional, tem dúvidas sobre a telemetria em nuvem ou quer fechar uma parceria?
+      Nossa equipe técnica está pronta para atender.</p>
+  </header>
+
+  <!-- Formulário e canais diretos -->
+  <section class="secao-principal">
+    <div class="container grade">
+
+      <div>
+        <h2 class="titulo-secao">Envie uma Mensagem</h2>
+        <p class="subtitulo-secao">Preencha o formulário abaixo e retornaremos em até 24 horas úteis.</p>
+        <div class="cartao">
+          <form>
+            <div class="linha-form">
+              <div class="campo"><label>Seu Nome <span>*</span></label><input placeholder="Digite seu nome completo">
+              </div>
+              <div class="campo"><label>E-mail Corporativo <span>*</span></label><input type="email"
+                  placeholder="exemplo@empresa.com"></div>
+            </div>
+            <div class="linha-form">
+              <div class="campo"><label>Telefone / WhatsApp <span>*</span></label><input
+                  placeholder="+55 (00) 00000-0000"></div>
+              <div class="campo">
+                <label>Assunto <span>*</span></label>
+                <select>
+                  <option value="">Selecione o motivo do contato</option>
+                  <option>Demonstração</option>
+                  <option>Suporte</option>
+                  <option>Parceria</option>
+                  <option>Vendas</option>
+                </select>
+              </div>
+            </div>
+            <div class="campo"><label>Mensagem <span>*</span></label><textarea
+                placeholder="Conte pra GrainTech o que você precisa ou quer entender"></textarea></div>
+            <button class="botao botao-laranja">Enviar Mensagem</button>
+          </form>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="titulo-secao">Canais Diretos</h2>
+        <p class="subtitulo-secao">Se preferir, entre em contato direto com nossos departamentos de vendas ou suporte de
+          telemetria.</p>
+        <ul class="lista-canais">
+          <li>
+            <div class="icone-canal">&#9993;</div>
+            <div>
+              <div class="rotulo">E-mail</div>
+              <div class="valor">contato@graintech.agr.br</div>
+            </div>
+          </li>
+          <li>
+            <div class="icone-canal">&#9742;</div>
+            <div>
+              <div class="rotulo">Telefone Direto</div>
+              <div class="valor">+55 (19) 3942-8810</div>
+            </div>
+          </li>
+          <li>
+            <div class="icone-canal">&#8962;</div>
+            <div>
+              <div class="rotulo">Sede Operacional</div>
+              <div class="valor">Campinas, SP - Polo de Tecnologia Pós-Colheita</div>
+            </div>
+          </li>
+        </ul>
+        <!-- Bloco reservado para o mapa (opcional) -->
+        <div class="area-mapa"><img src="../img/Map_Image.svg" alt="mapa"></div>
+        <div class="link-mapa">Visite Nosso Centro de Pesquisa</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Perguntas frequentes -->
+  <section class="secao-faq">
+    <div class="selo-faq">PERGUNTAS FREQUENTES</div>
+    <h2 class="titulo-faq">Dúvidas Frequentes sobre a GrainTech</h2>
+    <div class="lista-faq">
+      <div class="item-faq">
+        <input type="checkbox" id="faq1">
+        <label for="faq1">Como funciona o monitoramento contínuo dos silos?</label>
+        <p class="resposta-faq">Nossa rede de sensores IoT mede temperatura, umidade e volume em tempo real. Os dados
+          são processados na nuvem e apresentados em um dashboard formulado para a sua cooperativa.</p>
+      </div>
+      <div class="item-faq">
+        <input type="checkbox" id="faq2">
+        <label for="faq2">Qual o prazo de instalação dos sensores IoT?</label>
+        <p class="resposta-faq">O prazo médio de instalação e calibração de um complexo de silos padrão é de 5 dias
+          úteis, sem necessidade de paralisar a operação de recebimento de grãos.</p>
+      </div>
+      <div class="item-faq">
+        <input type="checkbox" id="faq3">
+        <label for="faq3">Os sensores funcionam em qualquer tipo de graneleiro?</label>
+        <p class="resposta-faq">Sim, nossos equipamentos são adaptáveis para silos de concreto, silos metálicos ou
+          galpões de armazenagem, com verificação técnica prévia sem custo adicional.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chamada para ação -->
+  <section class="secao-cta">
+    <div class="conteudo-cta">
+      <div>
+        <h3>Pronto para digitalizar seu armazenamento?</h3>
+        <p>Agende uma teleconferência operacional com nossos engenheiros agrícolas.</p>
+      </div>
+      <div class="botoes-cta">
+        <button class="botao botao-laranja" style="width:auto">Agendar Demo Grátis</button>
+        <button class="botao botao-contorno">Simulação de Retorno (ROI)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="grade-rodape">
+      <div>
+        <div class="logo">GrainTech</div>
+        <p>Simplificando o monitoramento e a preditiva de armazenagem de grãos com telemetria e IoT.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="inicio.html">Início</a></li>
+          <li><a href="servicos.html">Serviço</a></li>
+          <li><a href="simulador.html">Simulador</a></li>
+          <li><a href="sobreNos.html">Sobre Nós</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Termos & Conformidade</h4>
+        <ul>
+          <li>Termos de Serviço</li>
+          <li>Política de Privacidade</li>
+          <li>Segurança da Informação</li>
+          <li>Conformidade LGPD</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato Institucional</h4>
+        <ul>
+          <li>Operações & Telemetria Industrial</li>
+          <li>contato@graintech.agr.br</li>
+          <li>+55 (19) 3942-8810</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-inferior">&copy; 2026 GrainTech. Todos os direitos reservados.</div>
+  </footer>
 
 </body>
+
 </html>
