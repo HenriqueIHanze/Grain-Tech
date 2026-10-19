@@ -276,6 +276,7 @@ p {
     width: 165px;
 }
 
+/*Botão "Criar Conta": mesma cor de antes, só com um efeito mais bonito*/
 .confirmar {
     width: 100%;
     height: 40px;
@@ -285,6 +286,24 @@ p {
     background-color: #253D2D;
     border-radius: 10px;
     color: white;
+    font-family: inherit;   /* usa a mesma fonte da página (Poppins) */
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(37, 61, 45, 0.35);   /* sombrinha verde suave */
+    transition: transform 0.2s, box-shadow 0.2s;     /* deixa o efeito suave */
+}
+
+/*Passando o mouse: o botão sobe um pouquinho e a sombra aumenta*/
+.confirmar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(37, 61, 45, 0.45);
+}
+
+/*Clicando: o botão "afunda" de volta*/
+.confirmar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(37, 61, 45, 0.35);
 }
 
 .aba{
