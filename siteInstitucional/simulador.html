@@ -78,11 +78,6 @@
       <!-- Container criado para exibir os calculos -->
       <div class="caixa-resultado" style="display: none" id="div_simulacao_custo_x_perda"></div>
     </div>
-    <div>
-      <h2>Agora Simule o Valor de sua Safra</h2>
-      <button onclick="simularsafra()">Simular Valor</button>
-      <div class="caixa-resultado" style="display: none" id="div_simulacao_valor_safra"></div>
-    </div>
   </div>
 </body>
 <script>
@@ -217,72 +212,7 @@
     }
   }
 
-  function simularsafra() {
-    msg_tipo_grao.innerHTML = "";
-    msg_tipo_silo.innerHTML = "";
 
-    // Lê os valores atuais direto dos inputs para não depender do clique no primeiro botão
-    let silo = Number(sel_silo.value);
-    let grao = Number(sel_ativo.value);
-    let meses = Number(ipt_meses.value);
-
-    // If que valida se o grão foi selecionado
-    if (grao == 0) {
-      msg_tipo_grao.innerHTML = `<p class="texto-erro">Selecione um grão para prosseguirmos a simulação</p>`;
-    } // Senão se o silo foi selecionado
-    else if (silo == 0) {
-      msg_tipo_silo.innerHTML = `<p class="texto-erro">Selecione um silo para prosseguirmos a simulação</p>`;
-    } // Senão executa toda a lógica do botão
-    else {
-      if (grao == 1) {
-        // Após a validação ele verifica o tipo de silo escolhido e atribui valor ao tipo_silo de acordo com o silo selecionado no select
-        if (silo == 1) {
-          tipo_silo = silo_pequeno_arroz;
-          valor_silo_completo = tipo_silo * preco_arroz;
-        } else if (silo == 2) {
-          tipo_silo = silo_medio_arroz;
-          valor_silo_completo = tipo_silo * preco_arroz;
-        } else {
-          tipo_silo = silo_grande_arroz;
-          valor_silo_completo = tipo_silo * preco_arroz;
-        }
-      } else if (grao == 2) {
-        if (silo == 1) {
-          tipo_silo = silo_pequeno;
-          valor_silo_completo = tipo_silo * preco_milho;
-        } else if (silo == 2) {
-          tipo_silo = silo_medio;
-          valor_silo_completo = tipo_silo * preco_milho;
-        } else {
-          tipo_silo = silo_grande;
-          valor_silo_completo = tipo_silo * preco_milho;
-        }
-      } else {
-        // validar aqui se passou de 12 meses
-        if (meses <= 12) {
-          if (silo == 1) {
-            tipo_silo = silo_pequeno;
-            valor_silo_completo = tipo_silo * preco_soja;
-          } else if (silo == 2) {
-            tipo_silo = silo_medio;
-            valor_silo_completo = tipo_silo * preco_soja;
-          } else {
-            tipo_silo = silo_grande;
-            valor_silo_completo = tipo_silo * preco_soja;
-          }
-        }
-      }
-
-      div_simulacao_valor_safra.style.display = "flex";
-
-      // Verifica a restrição de meses para a soja
-      if (grao == 3 && meses > 12) {
-        div_simulacao_valor_safra.innerHTML = `<p class="vermelho texto-resultado"><b>Atenção:</b> seu grão pode estar avariado devido a quantidade de meses armazenados (máximo 12 meses para soja).</p>`;
-      } else {
-        div_simulacao_valor_safra.innerHTML = `<p class="verde texto-resultado">O valor da sua safra atingindo a totalidade do silo é de <b>${formatador.format(valor_silo_completo)}</b></p>`;
-      }
-    }
-  }
 </script>
 
 </html>
