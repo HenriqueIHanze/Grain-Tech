@@ -16,7 +16,7 @@ body {
     background-color: #16281F;
     color: #D9DDD6;
     width: 200px;
-    height: 100vh;
+    height: 139vh;
     gap: 20px;
 }
 
@@ -28,41 +28,88 @@ body {
     height: 70vh;
 }
 
-.principal {    
+.principal { 
     width: 200vh;
+    margin: 10px;
 }
 
-.principal h2, p {
-    margin-left: 40px;
-}
-
-.principal p {
-    margin-bottom: 20px;
-}
 .kpi-principal {
+    margin-top: 30px;
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 80px;
-    margin-left: 40px;
+    gap: 50px;
 }
 
 .kpi {
+    text-align: center;
     justify-content: center;
     font-size: 12px;
     color: gray;
-    height: 100px;
-    width: 150px;
+    height: 120px;
+    width: 185px;
     background-color: #16281F;
     border: #16281F;
     border-radius: 10px;
     border-style: solid;
-    gap: 50px;
 }
+
 
 
 main {
     width: 0;
     display: flex;
     flex-direction: row;
+}
+
+
+.grafico-superior{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    gap: 30px;
+}
+
+.operacao{
+    height: 300px;
+    width: 450px;
+    background-color: white;
+    border: #16281F;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+.evolucao-silo{
+    height: 300px;
+    width: 100vh;
+    background-color: white;
+    border: #16281F;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+.grafico-inferior{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+.grafico-coluna{
+    height: 300px;
+    width: 537px;
+    background-color: white;
+    border: #16281F;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+.alerta{
+    height: 300px;
+    width: 537px;
+    background-color: white;
+    border: #16281F;
+    border-radius: 10px;
+    border-style: solid;
 }
