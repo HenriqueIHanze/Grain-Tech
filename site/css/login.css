@@ -13,7 +13,7 @@ body {
 .pagina {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+
   justify-content: space-between;
   gap: 40px;
   padding: 40px 62px 40px 52px;
@@ -23,17 +23,28 @@ body {
   background-position: center;
 }
 
+.btn-saida{
+  display: flex;
+}
+
 /* Lado esquerdo*/
-.boas-vindas {
-  align-self: flex-start;
-  padding-top: 80px;
-  color: #fff;
+.boas-vindas{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    text-align: justify;
+    margin-right: 180px;
+    margin-top: 10px;
+    gap: 10px;
+    align-self: center;
 }
 
 .boas-vindas h1 {
-  font-size: 45px;
-  font-weight: 300;
-  line-height: 1.2;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.5;
+    text-align: justify;
+
 }
 
 .logo-grande {
@@ -205,4 +216,25 @@ hr {
   margin-left: 4px;
   color: #0a84ff;
   text-decoration: none;
+}
+
+.btn-saida {
+    display: flex;
+    text-decoration: none;
+    background-color: #ea5c5c;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: 400;
+    transition: background 0.4s;
+    gap: 12px;
+    margin-top: 10px;
+    margin-left: 10px;
+
+}
+
+/* ANIMAÇÃO DO BOTÃO DE SAIR*/
+.btn-saida:hover {
+    background-color: #e31111;
+
 }
