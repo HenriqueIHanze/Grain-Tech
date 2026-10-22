@@ -28,26 +28,41 @@ body {
     height: 70vh;
 }
 
-.pricipal {
-
+.principal {    
+    width: 200vh;
 }
 
-.kpi-principal{
+.principal h2, p {
+    margin-left: 40px;
+}
+
+.principal p {
+    margin-bottom: 20px;
+}
+.kpi-principal {
+    width: 100%;
     display: flex;
     flex-direction: row;
+    gap: 80px;
+    margin-left: 40px;
 }
 
-.kpi{
+.kpi {
+    justify-content: center;
+    font-size: 12px;
+    color: gray;
     height: 100px;
-    width: 100px;
+    width: 150px;
     background-color: #16281F;
     border: #16281F;
     border-radius: 10px;
     border-style: solid;
+    gap: 50px;
 }
 
 
-.main{
+main {
+    width: 0;
     display: flex;
     flex-direction: row;
 }
