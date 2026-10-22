@@ -144,7 +144,7 @@ h2 {
   text-align: center;
 }
 
-/* A imagem fica na primeira camada do banner. */
+
 .imgBckgInicio {
   height: 100%;
   left: 0;
@@ -325,7 +325,7 @@ h2 {
   margin-top: 3px;
 }
 
-/* A linha e a seta ligam visualmente uma etapa à próxima. */
+
 .ciclo li:not(:last-child)::before {
   border-top: 1px solid rgba(255, 255, 255, 0.14);
   content: "";
