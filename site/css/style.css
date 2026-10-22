@@ -1,75 +1,81 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /*Adicionando fontes*/
 
-body{
+body {
     font-family: "Poppins", sans-serif;
     color: black;
 }
 
 .principal {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 40px 62px 40px 52px;
-  background-color: #5d7a8c;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)), url("../../img/background.png");
-  background-size: cover;
-  background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: #5d7a8c;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)), url("../../img/background.png");
+    background-size: cover;
+    background-position: center;
 }
 
 /*Padronizando localização do Hero */
 .bem-vindo {
-  align-self: flex-start;
-  padding-top: 80px;
-  color: #fff;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    text-align: justify;
+    margin-right: 180px;
+    margin-top: 10px;
+    gap: 10px;
 }
 
-.bem-vindo h1{
-  font-size: 45px;
-  font-weight: 300;
-  line-height: 1.2;
+.bem-vindo h1 {
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.5;
+    text-align: justify;
+
 }
 
 .imagem1 {
-  display: block;
-  width: 385px;
-  max-width: 100%;
-  margin-top: 2px;
+    display: block;
+    width: 385px;
+    max-width: 100%;
+    margin-top: 2px;
 }
 
-.bem-vindo h3{
-  max-width: 400px;
-  margin-top: 150px;
-  font-size: 30px;
-  font-weight: 900;
-  line-height: 1.5;
-  color: white;
+.bem-vindo h3 {
+    max-width: 400px;
+    margin-top: 150px;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.5;
+    color: white;
 }
 
 
 /*Estilizando os campos de input*/
 
 .cadastro {
-  width: clamp(487px, 38vw, 680px);
-  min-height: 80vh;
-  flex-shrink: 0;
-  padding: 40px 30px 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(6px);
-  border: 1px solid #222;
-  border-radius: 24px;
-  font-size: 20px;
+    width: clamp(450px, 35vw, 580px);
+    min-height: 80vh;
+    flex-shrink: 0;
+    padding: 40px 30px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(6px);
+    border: 1px solid #222;
+    border-radius: 24px;
+    font-size: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
@@ -87,21 +93,21 @@ body{
 }
 
 .trocar_cadastro {
-  display: flex;
-  width: 80%;
-  height: 46px;
-  margin-top: 22px;
-  background-color: #ccffc4;
-  border-radius: 30px;
-  text-decoration: none;
-  
+    display: flex;
+    width: 80%;
+    height: 46px;
+    margin-top: 22px;
+    background-color: #ccffc4;
+    border-radius: 30px;
+    text-decoration: none;
+
 }
 
-hr{
-  width: 80%;
-  margin-top: 0px;
-  border: none;
-  border-top: 1px solid #000;
+hr {
+    width: 80%;
+    margin-top: 0px;
+    border: none;
+    border-top: 1px solid #000;
 }
 
 .campo {
@@ -113,9 +119,7 @@ hr{
     font-size: 20px;
 }
 
-place
-
-p {
+place p {
     margin: 0;
     padding: 0;
     font-size: 20px;
@@ -287,12 +291,15 @@ p {
     background-color: #253D2D;
     border-radius: 10px;
     color: white;
-    font-family: inherit;   /* usa a mesma fonte da página (Poppins) */
+    font-family: inherit;
+    /* usa a mesma fonte da página (Poppins) */
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(37, 61, 45, 0.35);   /* sombrinha verde suave */
-    transition: transform 0.2s, box-shadow 0.2s;     /* deixa o efeito suave */
+    box-shadow: 0 4px 10px rgba(37, 61, 45, 0.35);
+    /* sombrinha verde suave */
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* deixa o efeito suave */
 }
 
 /*Passando o mouse: o botão sobe um pouquinho e a sombra aumenta*/
@@ -307,45 +314,67 @@ p {
     box-shadow: 0 2px 6px rgba(37, 61, 45, 0.35);
 }
 
-.aba{
-  flex: 1;
-  border: none;
-  border-radius: 30px;
-  background: transparent;
-  font-family: inherit;
-  font-size: 16px;
-  color: #333;
-  cursor: pointer;
+.aba {
+    flex: 1;
+    border: none;
+    border-radius: 30px;
+    background: transparent;
+    font-family: inherit;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
 }
 
 .aba.selecionado {
-  background-color: #123f00;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-color: #123f00;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .aba.nao_selecionado {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.nao_selecionado a{
+.nao_selecionado a {
     text-decoration: none;
     color: inherit;
 }
 
 /*Adicionando Hover na tela de cadastro */
 
-.nao_selecionado:hover{  
+.nao_selecionado:hover {
     background-color: #253D2D;
-    color:white;
+    color: white;
 }
 
-.botao-cad{
+.botao-cad {
     font-size: 20px;
+}
+
+/* PROPRIEDADE DO BOTÃO DE SAIR */
+.btn-saida {
+    display: flex;
+    text-decoration: none;
+    background-color: #ea5c5c;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: 400;
+    transition: background 0.4s;
+    gap: 12px;
+    margin-top: 10px;
+    margin-left: 10px;
+
+}
+
+/* ANIMAÇÃO DO BOTÃO DE SAIR*/
+.btn-saida:hover {
+    background-color: #e31111;
+
 }
