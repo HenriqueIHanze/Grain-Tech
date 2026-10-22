@@ -30,6 +30,7 @@ body {
     margin-right: 180px;
     margin-top: 10px;
     gap: 10px;
+    align-self: center;
 }
 
 .bem-vindo h1 {
@@ -49,7 +50,7 @@ body {
 
 .bem-vindo h3 {
     max-width: 400px;
-    margin-top: 150px;
+    margin-top: 100px;
     font-size: 30px;
     font-weight: 900;
     line-height: 1.5;
