@@ -61,9 +61,7 @@ body {
 /*Estilizando os campos de input*/
 
 .cadastro {
-    width: clamp(450px, 35vw, 580px);
-    min-height: 80vh;
-    flex-shrink: 0;
+    width: clamp(487px, 38vw, 680px);
     padding: 40px 30px 32px;
     display: flex;
     flex-direction: column;
@@ -75,8 +73,8 @@ body {
     border-radius: 24px;
     font-size: 20px;
     margin-right: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
 
 
