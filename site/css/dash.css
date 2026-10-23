@@ -124,15 +124,17 @@ main {
     width: 100px;
     height: 150px;
     border: 5px solid #16281F;
-    background: #EDE6D0;   
+    background: #EDE6D0;
     display: flex;
-    align-items: flex-end;  
+    align-items: flex-end;
+    overflow: hidden;
 }
 
 .silo-nivel {
-    width: 200px;
+    width: 100%;
     height: 0%;
     background: #6B8F71;
+    transition: height 0.4s, background-color 0.4s;
 }
 
 .informacao {
@@ -167,14 +169,65 @@ main {
     font-size: 28px;
 }
 
-
 .evolucao-silo {
+    padding: 15px;
     height: 400px;
     width: 100%;
+    min-width: 0;
     background-color: white;
     border: #16281F;
     border-radius: 10px;
     border-style: solid;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.evolucao-silo h4{
+   opacity: 0.7;
+}
+
+.grafico-coluna {
+    padding: 15px;
+    height: 400px;
+    width: 100%;
+    min-width: 0;
+    background-color: white;
+    border: #16281F;
+    border-radius: 10px;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.Titulo {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.Titulo .Indicadores {
+    display: flex;
+    flex-direction: column;
+}
+
+.Indicadores h4 {
+    opacity: 0.7;
+}
+
+.grafico-coluna select {
+    align-self: flex-start;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #1A2B22;
+    color: white;
+}
+
+.canvas-caixa {
+    flex: 1;
+    min-height: 0;
+    position: relative;
 }
 
 .grafico-inferior {
@@ -184,16 +237,8 @@ main {
     gap: 30px;
 }
 
-.grafico-coluna {
-    height: 400px;
-    width: 100%;
-    background-color: white;
-    border: #16281F;
-    border-radius: 10px;
-    border-style: solid;
-}
-
 .alerta {
+    padding: 10px;
     height: 400px;
     width: 100%;
     background-color: white;
@@ -202,14 +247,66 @@ main {
     border-style: solid;
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
-.alerta_silo1{
-    height: 100px;
-    background-color: black;
+.Alertas_Silos {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    gap: 10px;
 }
 
-.alerta_silo2{
+.Alerta_Silo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
     height: 100px;
-    background-color: red;
+}
+
+.Bola_img.cor1{
+    background-color: rgb(5, 89, 5);
+}
+
+.Bola_img.cor2{
+   background-color: RED;
+}
+
+.Bola_img.cor3{
+   background-color: gray;
+}
+
+.Bola_img img{
+    height: 30px;
+}
+
+.Bola_img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;   
+}
+
+.Mensagem{
+    display: flex;
+    flex-direction: column;
+}
+.Alerta_Silo2 h3{
+    color: red;
+}
+
+.Alerta_Silo1 h3 {
+    color: green;
+}
+
+
+.Mensagem p {
+    font-size: 15px;
+    max-width: 350px;
+}
+
+.Bola_img .Saida {
+    transform: rotate(0.5turn);
 }

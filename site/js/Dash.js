@@ -67,21 +67,36 @@
   });
 
 // Grafico para falar a quantidade de Grãos que entram e Sai
+
+  const entradaPorSilo = [
+  [20, 35, 40, 47, 50, 70, 73],  
+  [15, 30, 45, 55, 68, 80, 93],  
+  [7, 14, 21, 28, 35, 42, 47]    
+  ];
+
+  const saidaPorSilo = [
+  [5, 10, 12, 22, 9, 18, 30],    
+  [4, 8, 15, 20, 25, 30, 22],    
+  [2, 5, 8, 10, 12, 15, 18]      
+  ];
+
+  const selectEntrarSair = document.getElementById('Silos_EntrarSair');
+  
   const ctx_EntrarSair = document.getElementById('EntrarSair');
-  new Chart(ctx_EntrarSair, {
+  const graficoEntrarSair = new Chart(ctx_EntrarSair, {
     type: 'bar',
     data: {    
       labels: labels,
       datasets: [{
         label: 'Entrada',
-        data: [20, 35, 40, 47, 50, 70, 73],
+        data: entradaPorSilo[0],
         borderWidth: 1,
         borderColor: '#244A36',
         backgroundColor: '#244A36'
       }, 
     {
         label: 'Saida',
-        data: [5, 10, 12, 22, 9, 18, 30],
+        data: saidaPorSilo[0],
         borderWidth: 1,
         borderColor: '#D9A02B',
         backgroundColor: '#D9A02B'
@@ -116,6 +131,15 @@
     }
   });
 
+  function atualizarGraficoEntrarSair() {
+  const posicao = selectEntrarSair.value;
+  graficoEntrarSair.data.datasets[0].data = entradaPorSilo[posicao];
+  graficoEntrarSair.data.datasets[1].data = saidaPorSilo[posicao];
+  graficoEntrarSair.update();
+}
+
+  selectEntrarSair.addEventListener('change', atualizarGraficoEntrarSair);
+
 
 // Silo interagindo com a porcentagem
 let nomes       = ["Silo 1 - Soja", "Silo 2 - Milho", "Silo 3 - Arroz"];
@@ -124,12 +148,11 @@ let armazenados = [1450, 1390, 470];
 let precoSaca   = [160.14, 70.93, 79.07]; 
 let pesoSaca    = [60, 60, 50];  
 
-let select    = document.getElementById("Silos");
+let select    = document.getElementById("Silos_SiloIndividual");
 let siloNivel = document.getElementById("siloNivel");
 let siloNome  = document.getElementById("siloNome");
 let siloStatus = document.getElementById("siloStatus");
 let siloPct   = document.getElementById("siloPct");
-let siloBarra = document.getElementById("siloBarra");
 let siloCap   = document.getElementById("siloCap");
 let siloArm   = document.getElementById("siloArm");
 let siloValor = document.getElementById("siloValor");
@@ -170,9 +193,6 @@ function atualizarSilo() {
 
   siloNivel.style.height = porcentagem + "%";
   siloNivel.style.backgroundColor = cor;
-
-  siloBarra.style.width = porcentagem + "%";
-  siloBarra.style.backgroundColor = cor;
 }
 
 select.addEventListener("change", atualizarSilo);

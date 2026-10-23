@@ -61,7 +61,7 @@
                 <div class="operacao">
                     <H2>Silos em operação</H2>
                     <h5>Escolha qual silo visualizar</h5>
-                    <select id="Silos">
+                    <select id="Silos_SiloIndividual">
                         <option value="0">Silo 1</option>
                         <option value="1">Silo 2</option>
                         <option value="2">Silo 3</option>
@@ -103,18 +103,59 @@
                         </div>
 
                     </div>
-                </div>  
+                </div>
                 <div class="evolucao-silo">
-                    <canvas id="Evolucao"></canvas>
+                    <h2>Evolução da ocupação dos silos</h2>
+                    <h4>Últimos 7 dias</h4>
+                    <div class="canvas-caixa">
+                        <canvas id="Evolucao"></canvas>
+                    </div>
                 </div>
             </div>
             <div class="grafico-inferior">
                 <div class="grafico-coluna">
-                    <canvas id="EntrarSair"></canvas>
+                    <div class="Titulo">
+                        <div class="Indicadores">
+                        <h2>Entradas e saídas de grãos</h2>
+                        <h4>Últimos 7 dias</h4>
+                        </div>
+                        <div><select id="Silos_EntrarSair">
+                                <option value="0">Silo 1</option>
+                                <option value="1">Silo 2</option>
+                                <option value="2">Silo 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="canvas-caixa">
+                        <canvas id="EntrarSair"></canvas>
+                    </div>
                 </div>
                 <div class="alerta">
-                    <div class="Alerta_silo1">Silo 1</div>
-                    <div class="Alerta_silo1">Silo 2</div>
+                    <h2>Alertas e Notificações</h2>
+                    <div class="Alertas_Silos">
+                        <div class="Alerta_Silo">
+                            <div class="Bola_img cor1"><img src="../img/EntradaSaida.png" alt=""></div>
+                            <div class="Mensagem">
+                                <h3>Entrada Registrada - Silo 1</h3>
+                                <p>Recebimento de 73t de soja. Estoque atualizado para 1480t.</p>
+                            </div>
+                        </div>
+                        <div class="Alerta_Silo">
+                            <div class="Bola_img cor2"><img src="../img/exclamacao.png" alt=""></div>
+                            <div class="Mensagem">
+                                <h3>Silo 2 - Milho</h3>
+                                <p>O nivel de ocupação atingiu 93%, Verifique a Capacidade Disponivel antes de autorizar
+                                    novas entradas</p>
+                            </div>
+                        </div>
+                        <div class="Alerta_Silo">
+                            <div class="Bola_img cor3"><img class="Saida" src="../img/EntradaSaida.png" alt=""></div>
+                            <div class="Mensagem">
+                                <h3>Saida Registrada - Silo 1</h3>
+                                <p>Recebimento de 30t de soja. Estoque atualizado para 1450t.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
