@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="./js/Dash.js" defer></script>
     <title>DashBoard - GrainTech</title>
 </head>
+
 <body>
     <main id="main">
         <div class="side-nav">
@@ -57,8 +59,51 @@
             </div>
             <div class="grafico-superior">
                 <div class="operacao">
+                    <H2>Silos em operação</H2>
+                    <h5>Escolha qual silo visualizar</h5>
+                    <select id="Silos">
+                        <option value="0">Silo 1</option>
+                        <option value="1">Silo 2</option>
+                        <option value="2">Silo 3</option>
+                    </select>
+                    <div class="SiloIndividual">
+                        <div class="silo-corpo">
+                            <div class="silo-telhado"> </div>
+                            <div class="silo-tubo">
+                                <div class="silo-nivel" id="siloNivel"> </div>
+                            </div>
+                        </div>
 
-                </div>
+                        <div class="informacao">
+                            <div class="QualSilo">
+                                <h3 id="siloNome">Silo 1</h3>
+                                <span id="siloStatus" class="status">Operacional</span>
+                            </div>
+
+                            <div class="ocupacao">
+                                <p class="rotulo">Ocupação</p>
+                                <strong id="siloPct" class="porcentagem">0%</strong>
+                            </div>
+
+                            <div class="armazem">
+                                <div>
+                                    <p class="rotulo">Capacidade</p>
+                                    <b id="siloCap" class="valor"></b>
+                                </div>
+                                <div>
+                                    <p class="rotulo">Armazenado</p>
+                                    <b id="siloArm" class="valor"></b>
+                                </div>
+                            </div>
+
+                            <div class="estimado">
+                                <p class="rotulo">Valor estimado</p>
+                                <b id="siloValor" class="valor-grande"></b>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>  
                 <div class="evolucao-silo">
                     <canvas id="Evolucao"></canvas>
                 </div>
@@ -68,10 +113,12 @@
                     <canvas id="EntrarSair"></canvas>
                 </div>
                 <div class="alerta">
-
+                    <div class="Alerta_silo1">Silo 1</div>
+                    <div class="Alerta_silo1">Silo 2</div>
                 </div>
             </div>
         </div>
     </main>
 </body>
+
 </html>

@@ -115,3 +115,66 @@
       }
     }
   });
+
+
+// Silo interagindo com a porcentagem
+let nomes       = ["Silo 1 - Soja", "Silo 2 - Milho", "Silo 3 - Arroz"];
+let capacidades = [2000, 1500, 1000];    
+let armazenados = [1450, 1390, 470];      
+let precoSaca   = [160.14, 70.93, 79.07]; 
+let pesoSaca    = [60, 60, 50];  
+
+let select    = document.getElementById("Silos");
+let siloNivel = document.getElementById("siloNivel");
+let siloNome  = document.getElementById("siloNome");
+let siloStatus = document.getElementById("siloStatus");
+let siloPct   = document.getElementById("siloPct");
+let siloBarra = document.getElementById("siloBarra");
+let siloCap   = document.getElementById("siloCap");
+let siloArm   = document.getElementById("siloArm");
+let siloValor = document.getElementById("siloValor");
+
+
+function atualizarSilo() {
+  let posicao = select.value;
+
+  let nome = nomes[posicao];
+  let capacidade = capacidades[posicao];
+  let armazenado = armazenados[posicao];
+
+  let porcentagem = (armazenado / capacidade) * 100;
+  let kg    = armazenado * 1000;
+  let sacas = kg / pesoSaca[posicao];
+  let valor = sacas * precoSaca[posicao];
+
+  let cor = "";
+  let status = "";
+
+  if (porcentagem >= 90) {
+    cor = "#B83A2E";      
+    status = "Crítico";
+  } else if (porcentagem >= 80) {
+    cor = "#D9A02B";      
+    status = "Atenção";
+  } else {
+    cor = "#6B8F71";      
+    status = "Operacional";
+  }
+
+  siloNome.innerHTML   = nome;
+  siloStatus.innerHTML = status;
+  siloPct.innerHTML    = porcentagem.toFixed(0) + "%";
+  siloCap.innerHTML    = capacidade + " t";
+  siloArm.innerHTML    = armazenado + " t";
+  siloValor.innerHTML  = "R$ " + valor.toFixed(2);
+
+  siloNivel.style.height = porcentagem + "%";
+  siloNivel.style.backgroundColor = cor;
+
+  siloBarra.style.width = porcentagem + "%";
+  siloBarra.style.backgroundColor = cor;
+}
+
+select.addEventListener("change", atualizarSilo);
+
+atualizarSilo();

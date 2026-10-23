@@ -74,13 +74,99 @@ main {
 }
 
 .operacao {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     height: 400px;
-    width: 100%;
+    width: 450px;
     background-color: white;
     border: #16281F;
     border-radius: 10px;
     border-style: solid;
 }
+
+.operacao h5{
+    opacity: 0.6;
+}
+
+.operacao select{
+    align-self: center;
+    border-radius: 10px;
+    background-color: #1A2B22;
+    color: #D9DDD6;
+    font-size: 20px;
+    height: 35px;
+    width: 380px;
+}
+
+.SiloIndividual {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+    align-self: center;
+}
+
+.silo-corpo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.silo-telhado {
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 45px solid #16281F;
+}
+
+.silo-tubo {
+    width: 100px;
+    height: 150px;
+    border: 5px solid #16281F;
+    background: #EDE6D0;   
+    display: flex;
+    align-items: flex-end;  
+}
+
+.silo-nivel {
+    width: 200px;
+    height: 0%;
+    background: #6B8F71;
+}
+
+.informacao {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;          
+    width: 230px;
+}
+
+.rotulo {
+    font-size: 13px;
+    opacity: 0.6;       
+}
+
+.porcentagem {
+    font-size: 60px;
+    display: block;
+    line-height: 1;
+    margin-top: 4px;
+}
+
+.armazem {
+    display: flex;
+    gap: 30px;
+}
+
+.valor {
+    font-size: 20px; 
+}
+
+.valor-grande {
+    font-size: 28px;
+}
+
 
 .evolucao-silo {
     height: 400px;
@@ -114,4 +200,16 @@ main {
     border: #16281F;
     border-radius: 10px;
     border-style: solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.alerta_silo1{
+    height: 100px;
+    background-color: black;
+}
+
+.alerta_silo2{
+    height: 100px;
+    background-color: red;
 }
