@@ -16,26 +16,85 @@ main {
 }
 
 .side-nav {
-    padding: 10px;
+    padding: 24px 14px;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     flex-direction: column;
     background-color: #16281F;
     color: #D9DDD6;
+    font-family: "Poppins", Arial, sans-serif;
     width: 200px;
     flex-shrink: 0;
     height: 100vh;
     position: sticky;
     top: 0;
-    gap: 20px;
+    gap: 28px;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 4px;
+}
+
+.titulo h1 {
+    line-height: 0;
+}
+
+.titulo h1 img {
+    display: block;
+    width: 100%;
+    max-width: 160px;
+    height: auto;
+}
+
+.titulo p {
+    font-size: 10px;
+    opacity: 0.7;
+    white-space: nowrap;
 }
 
 .options {
-    gap: 20px;
+    gap: 14px;
     display: flex;
     flex-direction: column;
-    width: 190px;
-    height: 70vh;
+    width: 100%;
+}
+
+.icons,
+.Sair {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #D9DDD6;
+    cursor: pointer;
+}
+
+.icons img,
+.Sair img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    opacity: 0.7;
+}
+
+.icons a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.Sair a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.icons:hover,
+.Sair:hover {
+    background-color: rgba(255, 255, 255, 0.06);
 }
 
 .principal {
