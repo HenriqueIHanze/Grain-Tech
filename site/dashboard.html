@@ -43,33 +43,33 @@
             <div class="kpi-principal">
                 <div class="kpi">
                     <p class="kpi-titulo">Silos ativos</p>
-                    <strong class="kpi-valor">8 <span>/ 8</span></strong>
+                    <strong class="kpi-valor">3 <span>/ 3</span></strong>
                     <p class="kpi-apoio bom">Silos e sensores online</p>
                     <div class="kpi-barra">
                     </div>
-                    <small class="kpi-rodape">Última leitura: 01/10/2026 às 14:32</small>
+                    <small class="kpi-rodape">Último teste: 29/10/2026 às 09:30</small>
                 </div>
                 <div class="kpi">
                     <p class="kpi-titulo">Ocupação média</p>
-                    <strong class="kpi-valor">68%</strong>
-                    <p class="kpi-apoio atencao">▲ 5 pontos percentuais vs. semana passada (63%)</p>
+                    <strong class="kpi-valor" id="MediaAtual"></strong>
+                    <p class="kpi-apoio atencao">▲ <span id="diferenca_leituras"></span> pontos percentuais vs. semana passada (<span id="leitura_passada"></span>%)</p>
                     <small class="kpi-rodape">Limite recomendado: 90%</small>
                 </div>
                 <div class="kpi">
                     <p class="kpi-titulo">Silos críticos</p>
-                    <strong class="kpi-valor">2</strong>
+                    <strong class="kpi-valor">1</strong>
                     <p class="kpi-apoio">Ocupação ≥ 90% <br> · Ontem: 1 <br>· Meta: 0</p>
-                    <small class="kpi-rodape">Silo 03 e Silo 04</small>
+                    <small class="kpi-rodape">Silo 02</small>
                 </div>
                 <div class="kpi">
                     <p class="kpi-titulo">Capacidade disponível</p>
-                    <strong class="kpi-valor">1.240 t</strong>
-                    <p class="kpi-apoio bom">de 3.900 t (32% livre)</p>
+                    <strong class="kpi-valor" id="ArmazenadoT"></strong>
+                    <p class="kpi-apoio bom" id="CapacidadeT">(32% livre)</p>
                     <small class="kpi-rodape">Mínimo desejado: 1.000 t</small>
                 </div>
                 <div class="kpi">
                     <p class="kpi-titulo">Valor total armazenado</p>
-                    <strong class="kpi-valor">R$ 892.450</strong>
+                    <strong class="kpi-valor ValorFinal" id="ValorTotal"></strong>
                     <p class="kpi-apoio bom">▲ 3% vs. semana passada</p>
                     <small class="kpi-rodape">Estimativa pela cotação de 01/10/2026</small>
                 </div>

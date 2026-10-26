@@ -38,6 +38,12 @@ main {
     padding: 0 4px;
 }
 
+.kpi-titulo {
+    font-size: 20px;
+}
+
+
+
 .titulo h1 {
     line-height: 0;
 }
@@ -113,24 +119,30 @@ main {
 
 .kpi-valor {
     display: block;
-    font-size: 34px;
+    font-size: 40px;
     font-weight: 700;
     color: #FFFFFF;
 }
 
+.kpi-valor.ValorFinal {
+    font-size: 25px;
+}
+
 .kpi-apoio {
+    opacity: 9;
     margin: 0;
-    font-size: 12px;
+    font-size: 15px;
     color: #B7C4BC;
 }
 
 .kpi-rodape {
     margin-top: 0;
-    font-size: 11px;
+    font-size: 13px;
     color: #8FA196;
 }
 
 .kpi {
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -139,7 +151,7 @@ main {
     align-items: center;
     justify-content: space-between;
     font-size: 12px;
-    color: gray;
+    color: rgb(207, 207, 207);
     height: 160px;
     background-color: #16281F;
     border: #16281F;
@@ -242,7 +254,7 @@ main {
     gap: 30px;
 }
 
-.valor {
+.Valor {
     font-size: 20px;
 }
 
