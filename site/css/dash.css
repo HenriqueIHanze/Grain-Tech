@@ -42,6 +42,17 @@ main {
     font-size: 20px;
 }
 
+footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35vh;
+    gap: 5px;
+}
+
+footer img {
+    align-self: flex-start;
+    height: 90px;
+}
 
 
 .titulo h1 {
