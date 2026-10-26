@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../site/css/login.css">
 </head>
+
 <body>
 
   <main class="pagina">
     <div>
-        <a href="../siteInstitucional/inicio.html" class="btn-saida"><img src="../img/saida.svg">Sair</a>
+      <a href="../siteInstitucional/inicio.html" class="btn-saida"><img src="../img/saida.svg">Sair</a>
     </div>
 
     <!-- Lado esquerdo -->
@@ -42,14 +44,14 @@
 
       <div class="formulario">
         <div class="campo">
-          <input type="email" placeholder="Insira seu Email">
+          <input type="email" placeholder="Insira seu Email" id="email_campo">
         </div>
 
         <div class="campo">
-          <input type="password" placeholder="Insira sua Senha">
+          <input type="password" placeholder="Insira sua Senha" id="senha_campo">
         </div>
 
-        <button class="botao-login">Login</button>
+        <button class="botao-login" onclick="conferir()">Login</button>
       </div>
 
     </section>
@@ -57,4 +59,28 @@
   </main>
 
 </body>
+
 </html>
+
+<script>
+
+  function conferir() {
+
+    let campo_email = email_campo.value;
+    let campo_senha = senha_campo.value;
+    let email = "admin123@sptech.school";
+    let senha = "senha.123";
+
+    if (campo_email != email) {
+
+      alert("Email inválido");
+    } else if (campo_senha != senha) {
+
+      alert("Senha inválida");
+    } else if (email == campo_email && senha == campo_senha) {
+
+      window.location.href = "dashboard.html";
+    }
+
+  }
+</script>
