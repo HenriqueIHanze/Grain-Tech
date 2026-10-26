@@ -16,7 +16,6 @@ body {
 
   justify-content: space-between;
   gap: 40px;
-  padding: 40px 62px 40px 52px;
   background-color: #5d7a8c;
   background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)), url("../../img/background.png");
   background-size: cover;
@@ -64,6 +63,7 @@ body {
 
 /*  Cartão  */
 .cartao {
+  margin: 50px;
   width: clamp(487px, 38vw, 680px);
   min-height: 80vh;
   flex-shrink: 0;
