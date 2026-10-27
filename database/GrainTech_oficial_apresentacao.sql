@@ -140,47 +140,6 @@ CREATE TABLE operacoes (
 );
 
 -- ===================================
--- PLANOS
--- Valores atualizados conforme a nova decisão de negócio
--- (taxa de setup parcial + mensalidade cobrindo hardware e software).
--- ===================================
-CREATE TABLE planos (
-    id_plano INT AUTO_INCREMENT PRIMARY KEY,
-    nome_plano VARCHAR(20) NOT NULL,
-    faixa_min_silos INT NOT NULL,
-    faixa_max_silos INT,
-    taxa_setup DECIMAL(8,2) NOT NULL,
-    mensalidade_silo DECIMAL(8,2) NOT NULL,
-    prazo_minimo_meses INT NOT NULL,
-    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT chk_nome_plano CHECK (nome_plano IN ('Individual', 'Operacao', 'Enterprise'))
-);
-
--- ===================================
--- CONTRATOS
--- Inclui forma_pagamento e dia_vencimento (João Vitor), cobrindo
--- a cobrança recorrente do plano contratado.
--- ===================================
-CREATE TABLE contratos (
-    id_contrato INT AUTO_INCREMENT PRIMARY KEY,
-    data_inicio DATE NOT NULL,
-    data_fim_fidelidade DATE NOT NULL,
-    forma_pagamento VARCHAR(15) NOT NULL DEFAULT 'Boleto',
-    dia_vencimento CHAR(2) NOT NULL DEFAULT '10',
-    status VARCHAR(10) DEFAULT 'Ativo',
-    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    fk_empresas INT NOT NULL,
-    fk_planos INT NOT NULL,
-    CONSTRAINT chk_status_contrato CHECK (status IN ('Ativo', 'Cancelado', 'Suspenso')),
-    CONSTRAINT chk_forma_pagamento CHECK (forma_pagamento IN ('Boleto', 'PIX', 'Cartao')),
-    CONSTRAINT chk_dia_vencimento CHECK (dia_vencimento IN ('01','05','08','10','15','20','25','30')),
-	CONSTRAINT cfk_contratos_empresa FOREIGN KEY (fk_empresas) REFERENCES empresas (id_empresa),
-	CONSTRAINT cfk_contratos_planos FOREIGN KEY (fk_planos) REFERENCES planos (id_plano)
-);
-
--- ===================================
 -- GANHO_FINANCEIRO
 -- ===================================
 CREATE TABLE ganho_financeiro (
@@ -214,14 +173,6 @@ INSERT INTO cotacoes_mercado (id_cotacao, fk_graos, preco_saca, icms_percentual,
 (4, 2, 59.20, 7.00, 1.20, '2026-09-05'),
 (5, 3, 105.00, 7.00, 1.20, '2026-09-01'),
 (6, 4, 98.00, 7.00, 1.20, '2026-09-01');
-
--- ===================================
--- PLANOS
--- ===================================
-INSERT INTO planos (id_plano, nome_plano, faixa_min_silos, faixa_max_silos, taxa_setup, mensalidade_silo, prazo_minimo_meses) VALUES
-(1, 'Individual', 1, 9, 1800.00, 350.00, 12),
-(2, 'Operacao', 10, 49, 1300.00, 280.00, 24),
-(3, 'Enterprise', 50, NULL, 0.00, 200.00, 36);
 
 -- ===================================
 -- EMPRESAS
@@ -300,16 +251,6 @@ INSERT INTO operacoes (id_operacao, fk_silos, tipo_operacao, quantidade_ton, dat
 (10, 10, 'Saida', 15.00, '2026-09-02 13:00:00');
 
 -- ===================================
--- CONTRATOS
--- ===================================
-INSERT INTO contratos (id_contrato, fk_empresas, fk_planos, data_inicio, data_fim_fidelidade, forma_pagamento, dia_vencimento, status) VALUES
-(1, 1, 1, '2026-01-15', '2027-01-15', 'PIX', '10', 'Ativo'),
-(2, 2, 2, '2026-01-10', '2028-01-10', 'Boleto', '05', 'Ativo'),
-(3, 3, 1, '2026-03-05', '2027-03-05', 'Cartao', '15', 'Ativo'),
-(4, 4, 1, '2026-02-01', '2027-02-01', 'Boleto', '20', 'Cancelado'),
-(5, 5, 3, '2026-01-20', '2029-01-20', 'PIX', '01', 'Ativo');
-
--- ===================================
 -- GANHO_FINANCEIRO
 -- ===================================
 INSERT INTO ganho_financeiro (id_ganho, fk_silos, sacas_armazenadas, desagio_por_saca, perda_evitada_reais, data_simulacao) VALUES
@@ -370,27 +311,13 @@ FROM cotacoes_mercado
 WHERE fk_graos = 1
 ORDER BY data_cotacao ASC;
 
--- 9) Contratos ativos com pagamento por PIX
-SELECT fk_empresas, forma_pagamento, dia_vencimento, status
-FROM contratos
-WHERE status = 'Ativo' AND forma_pagamento = 'PIX'
-ORDER BY dia_vencimento ASC;
-
--- 10) Planos, tratando faixa_max_silos NULL (Enterprise)
-SELECT nome_plano,
-       CONCAT(faixa_min_silos, ' a ', IFNULL(faixa_max_silos, 'sem limite')) AS faixa_silos,
-       mensalidade_silo,
-       prazo_minimo_meses
-FROM planos
-ORDER BY faixa_min_silos ASC;
-
--- 11) Simulações de ganho financeiro acima de R$60.000
+-- 9) Simulações de ganho financeiro acima de R$60.000
 SELECT CONCAT('Silo ', fk_silos, ': R$ ', perda_evitada_reais, ' evitados') AS resumo
 FROM ganho_financeiro
 WHERE perda_evitada_reais > 60000.00
 ORDER BY perda_evitada_reais DESC;
 
--- 12) Propriedades cujo nome contém "Fazenda"
+-- 10) Propriedades cujo nome contém "Fazenda"
 SELECT nome_propriedade, cidade, uf
 FROM propriedades
 WHERE nome_propriedade LIKE 'Fazenda%'
