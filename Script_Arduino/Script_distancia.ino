@@ -5,7 +5,7 @@ const int PINO_ECHO =13;
 
 HC_SR04 SENSOR(PINO_TRIGGER, PINO_ECHO);
 
-void SETUP()
+void SETUP() {
   Seria.begin(9600);
   }
 
