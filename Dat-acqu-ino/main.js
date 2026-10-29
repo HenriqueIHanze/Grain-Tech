@@ -19,7 +19,7 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'arduino_vm',
+            user: 'Arduino_VM',
             password: 'Senha2468$',
             database: 'GrainTech',
             port: 3307
