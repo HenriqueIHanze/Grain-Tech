@@ -120,20 +120,21 @@ body {
 }
 
 
-/* ---------- FORMULÁRIO E CANAIS DIRETOS ----------
-   A seção usa "grid" com 2 colunas: formulário (maior)
-   à esquerda e canais de contato à direita. */
+/* ---------- CANAIS DIRETOS E MAPA ----------
+   A seção usa "grid" com 2 colunas: canais de contato
+   à esquerda e o mapa à direita. */
 .secao-principal {
     padding: 56px 24px;
 }
 
 .grade {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
 }
 
-/* Títulos e subtítulos das duas colunas */
+/* Títulos e subtítulos */
 .titulo-secao {
     font-size: 22px;
     font-weight: 700;
@@ -144,66 +145,6 @@ body {
     color: #6b6f68;
     font-size: 14px;
     margin-bottom: 24px;
-}
-
-/* Caixa bege que envolve o formulário */
-.cartao {
-    background: #f0ead9;
-    border: 1px solid #e4ddc9;
-    border-radius: 14px;
-    padding: 32px;
-}
-
-/* Linha com 2 campos lado a lado (nome/e-mail, telefone/assunto) */
-.linha-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-}
-
-/* Cada campo: o texto (label) fica em cima e o input embaixo */
-.campo {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
-}
-
-.campo label {
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 6px;
-}
-
-/* Asterisco laranja de campo obrigatório */
-.campo label span {
-    color: #e0693e;
-}
-
-/* Visual igual para input, select e textarea */
-.campo input,
-.campo select,
-.campo textarea {
-    border: 1px solid #e4ddc9;
-    background: #fff;
-    border-radius: 8px;
-    padding: 11px 14px;
-    font-size: 14px;
-    font-family: inherit;
-    outline: none;
-}
-
-/* Quando o usuário clica no campo, a borda fica laranja */
-.campo input:focus,
-.campo select:focus,
-.campo textarea:focus {
-    border-color: #e0693e;
-}
-
-/* Caixa de mensagem: altura mínima e só estica pra baixo */
-.campo textarea {
-    resize: vertical;
-    min-height: 100px;
 }
 
 
@@ -279,8 +220,7 @@ body {
 
 
 /* - ÁREA DO MAPA -
-   É só um bloco listrado reservando o espaço.
-   Quando tiver o mapa de verdade, é só colocar ele aqui dentro. */
+   Caixa tracejada onde fica a imagem do mapa (ela não se mexe). */
 .area-mapa {
     margin-top: 24px;
     border: 3px dashed #e4ddc9;
@@ -310,7 +250,7 @@ body {
     padding: 10px;
     margin-top: 10px;
     font-size: 13px;
-    font-weight: 600px;
+    font-weight: 600;
 }
 
 
